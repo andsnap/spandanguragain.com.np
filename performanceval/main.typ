@@ -192,13 +192,18 @@ $
 
 #let resp-row(label, title, dekhi, samma) = {
   let is_filled = (dekhi != "" and dekhi != none and samma != "" and samma != none)
+  
   if is_filled {
+    // Elegant inline sentence flow with hanging indent for the filled case
+    let sentence = [#title #dekhi देखि #samma सम्म]
     grid(
-      columns: (auto, auto, 1fr, auto, 1fr, auto),
-      align: (left, left, center, center, center, right),
-      [*#label*], [*#title*], [*#dekhi*], [*देखि*], [*#samma*], [*सम्म*]
+      columns: (auto, 1fr),
+      column-gutter: 4pt,
+      align: (left + top, left + top),
+      [*#label*], [#strong(sentence)]
     )
   } else {
+    // Original wide layout for printing/handwriting when not filled
     grid(
       columns: (auto, auto, 1fr, auto, 1fr, auto),
       align: (left, left, center, center, center, right),
