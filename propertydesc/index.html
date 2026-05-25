@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="ne">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>सम्पत्ति विवरण फाराम</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js"
+    id="typst"></script>
+</head>
+
+<body>
+
+  <div class="home-link-container">
+    <a href="/" class="home-link">spandanguragain.com.np</a>
+  </div>
+
+  <h2>सम्पत्ति विवरण फाराम</h2>
+  <h3>(भ्रष्टाचार निवारण ऐन, २०५९ को दफा ५० को उपदफा (१) र अख्तियार दुरुपयोग अनुसन्धान आयोग ऐन, २०४८ को दफा ३१ क को
+    उपदफा (१) बमोजिम)</h3>
+
+  <hr>
+
+  <div id="docActions">
+    <button type="button" id="previewToggleBtn" class="doc-action-btn active" onclick="togglePreview()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      Preview
+    </button>
+
+    <button type="button" id="downloadBtn" class="doc-action-btn" onclick="compilePDF()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+      Download
+    </button>
+  </div>
+
+  <main class="main-container">
+
+    <!-- Left Column: Interactive Form -->
+    <div class="form-column">
+      <form id="mainForm">
+
+        <!-- १. व्यक्तिगत विवरण -->
+        <fieldset>
+          <legend>१. व्यक्तिगत विवरण</legend>
+
+          <p>
+            <label for="nama">सार्वजनिक पदधारण गरेको व्यक्तिको नाम, थर :</label><br>
+            <input type="text" id="nama" name="nama" size="60">
+          </p>
+
+          <p>
+            <label for="pad">पद :</label><br>
+            <input type="text" id="pad" name="pad" size="40">
+          </p>
+
+          <p>
+            <label for="nikaya">विवरण पेश गरेको निकाय :</label><br>
+            <input type="text" id="nikaya" name="nikaya" size="50">
+          </p>
+
+          <p>
+            <label for="karyalaya">कार्यालय :</label><br>
+            <input type="text" id="karyalaya" name="karyalaya" size="50">
+          </p>
+
+          <p>
+            <label for="fiscal_year">विवरण पेश गरेको आ.ब. :</label><br>
+            <input type="text" id="fiscal_year" name="fiscal_year" size="20" placeholder="२०८०/८१">
+          </p>
+        </fieldset>
+
+        <!-- २. ठेगाना विवरण -->
+        <fieldset>
+          <legend>२. ठेगाना विवरण</legend>
+
+          <h3>स्थायी ठेगाना :</h3>
+          <div class="address-fields-vertical">
+            <p>
+              <label for="sthayi_jilla">जिल्ला :</label>
+              <input type="text" id="sthayi_jilla" name="sthayi_jilla">
+            </p>
+            <p>
+              <label for="sthayi_vdc_mp">गा.वि.स. / न.पा. :</label>
+              <input type="text" id="sthayi_vdc_mp" name="sthayi_vdc_mp">
+            </p>
+            <p>
+              <label for="sthayi_wada">वडा नं. :</label>
+              <input type="text" id="sthayi_wada" name="sthayi_wada">
+            </p>
+            <p>
+              <label for="sthayi_tol">टोल :</label>
+              <input type="text" id="sthayi_tol" name="sthayi_tol">
+            </p>
+          </div>
+
+          <div class="address-section-header">
+            <h3>हाल बसोबास गरेको ठेगाना :</h3>
+            <div class="sync-checkbox-container">
+              <input type="checkbox" id="sync_address" name="sync_address">
+              <label for="sync_address">स्थायी ठेगाना सरह</label>
+            </div>
+          </div>
+          <div class="address-fields-vertical">
+            <p>
+              <label for="temporary_jilla">जिल्ला :</label>
+              <input type="text" id="temporary_jilla" name="temporary_jilla">
+            </p>
+            <p>
+              <label for="temporary_vdc_mp">गा.वि.स. / न.पा. :</label>
+              <input type="text" id="temporary_vdc_mp" name="temporary_vdc_mp">
+            </p>
+            <p>
+              <label for="temporary_wada">वडा नं. :</label>
+              <input type="text" id="temporary_wada" name="temporary_wada">
+            </p>
+            <p>
+              <label for="temporary_tol">टोल :</label>
+              <input type="text" id="temporary_tol" name="temporary_tol">
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+            <p style="margin: 0;">
+              <label for="sanket_no">कर्मचारी भए संकेत नम्बर :</label>
+              <input type="text" id="sanket_no" name="sanket_no">
+            </p>
+            <p style="margin: 0;">
+              <label for="pan">स्थायी लेखा नं. (PAN) :</label>
+              <input type="text" id="pan" name="pan">
+            </p>
+          </div>
+        </fieldset>
+
+        <!-- ३. अचल सम्पत्ति - (क) घर -->
+        <fieldset>
+          <legend>१. अचल सम्पत्तिको विवरण — (क) घर</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_ghar" name="break_ghar">
+            <label for="break_ghar">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_ghar" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_ghar', createGharCells)">+ घर
+              थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ४. अचल सम्पत्ति - (ख) जग्गा -->
+        <fieldset>
+          <legend>१. अचल सम्पत्तिको विवरण — (ख) जग्गा</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_jagga" name="break_jagga">
+            <label for="break_jagga">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_jagga" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_jagga', createJaggaCells)">+ जग्गा
+              थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ५. चल सम्पत्ति - (क) नगद, सुन, चाँदी, हिरा, जवाहरात -->
+        <fieldset>
+          <legend>२. चल सम्पत्तिको विवरण — (क) नगद, सुन, चाँदी, हिरा, जवाहरात</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_nagad" name="break_nagad">
+            <label for="break_nagad">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_nagad" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_nagad', createNagadCells)">+
+              थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ६. चल सम्पत्ति - (ख) खाताको विवरण -->
+        <fieldset>
+          <legend>२. चल सम्पत्तिको विवरण — (ख) बैंक, वित्तीय संस्था तथा सहकारी संस्थामा रहेको खाता</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_bank" name="break_bank">
+            <label for="break_bank">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_bank" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_bank', createBankCells)">+ खाता
+              थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ७. चल सम्पत्ति - (ग) धितोपत्र, शेयर वा ऋणपत्र -->
+        <fieldset>
+          <legend>२. चल सम्पत्तिको विवरण — (ग) धितोपत्र, शेयर वा ऋणपत्रको विवरण</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_securities" name="break_securities">
+            <label for="break_securities">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_securities" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_securities', createSecuritiesCells)">+
+              धितोपत्र थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ८. चल सम्पत्ति - (घ) ऋण विवरण -->
+        <fieldset>
+          <legend>२. चल सम्पत्तिको विवरण — (घ) ऋण लिए/दिए/तिरेको विवरण</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_loan" name="break_loan">
+            <label for="break_loan">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_loan" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_loan', createLoanCells)">+ ऋण विवरण
+              थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ९. चल सम्पत्ति - (ङ) सवारी साधन -->
+        <fieldset>
+          <legend>२. चल सम्पत्तिको विवरण — (ङ) सवारी साधन (अटोमोवाइलको हकमा मात्र)</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_vehicles" name="break_vehicles">
+            <label for="break_vehicles">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_vehicles" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_vehicles', createVehiclesCells)">+ सवारी
+              साधन थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- १०. कृषि तथा पशुधन -->
+        <fieldset>
+          <legend>३. कृषि तथा पशुधन (घरजग्गा बाहेक) को विवरण</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_agriculture" name="break_agriculture">
+            <label for="break_agriculture">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_agriculture" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_agriculture', createAgricultureCells)">+
+              कृषि/पशुधन थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- ११. अन्य सम्पत्ति -->
+        <fieldset>
+          <legend>४. अन्य सम्पत्तिको विवरण</legend>
+          <div class="toggle-container">
+            <input type="checkbox" id="break_others" name="break_others">
+            <label for="break_others">नयाँ पाना बाट सुरु गर्ने</label>
+          </div>
+          <div id="table_others" class="card-list-container">
+            <div class="card-list-body"></div>
+          </div>
+          <p style="margin-top: 1rem;">
+            <button type="button" class="btn-primary" onclick="addRow('table_others', createOthersCells)">+ अन्य
+              सम्पत्ति थप्नुहोस्</button>
+          </p>
+        </fieldset>
+
+        <!-- १२. विवरण घोषणा तथा दस्तखत -->
+        <fieldset>
+          <legend>विवरण घोषणा तथा दस्तखत</legend>
+          <p>
+            <label for="decl_name">घोषणा गर्नेको नाम, थर :</label><br>
+            <input type="text" id="decl_name" name="decl_name" size="40">
+          </p>
+          <p>
+            <label for="decl_pad">पद :</label><br>
+            <input type="text" id="decl_pad" name="decl_pad" size="40">
+          </p>
+          <p>
+            <label for="decl_miti">मिति (BS) :</label><br>
+            <input type="text" id="decl_miti" name="decl_miti" size="20" placeholder="२०८०-०४-२५">
+          </p>
+        </fieldset>
+
+      </form>
+    </div>
+
+    <!-- Right Column: Sticky Live Document Preview -->
+    <div class="preview-column" id="previewColumn">
+      <div class="preview-pane">
+        <div id="previewContainer">
+          <p style="color: #64748b; padding: 2rem; text-align: center;">document preview loading...</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let mainTypContent = "";
+    let previewEnabled = true;
+    let typstReady = false;
+
+    // --- Cell builders for dynamic rows ---
+    function createGharCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>घर धनीको नाम</label>
+            <input type="text" class="ghar-owner_name" placeholder="घर धनी" value="${d.owner_name || ''}">
+          </div>
+          <div class="card-field">
+            <label>जिल्ला</label>
+            <input type="text" class="ghar-jilla" placeholder="जिल्ला" value="${d.jilla || ''}">
+          </div>
+          <div class="card-field">
+            <label>गा.वि.स./न.पा.</label>
+            <input type="text" class="ghar-vdc_mp" placeholder="गा.वि.स./न.पा." value="${d.vdc_mp || ''}">
+          </div>
+          <div class="card-field">
+            <label>वडा नं.</label>
+            <input type="text" class="ghar-wada" placeholder="वडा" value="${d.wada || ''}">
+          </div>
+          <div class="card-field">
+            <label>कित्ता नं.</label>
+            <input type="text" class="ghar-kitta" placeholder="कित्ता" value="${d.kitta || ''}">
+          </div>
+          <div class="card-field">
+            <label>क्षेत्रफल (वर्ग मिटर)</label>
+            <input type="text" class="ghar-area" placeholder="क्षेत्रफल" value="${d.area || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मूल्य</label>
+            <input type="text" class="ghar-price" placeholder="मूल्य" value="${d.price || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="ghar-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="ghar-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createJaggaCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>जग्गा धनीको नाम</label>
+            <input type="text" class="jagga-owner_name" placeholder="जग्गा धनी" value="${d.owner_name || ''}">
+          </div>
+          <div class="card-field">
+            <label>जिल्ला</label>
+            <input type="text" class="jagga-jilla" placeholder="जिल्ला" value="${d.jilla || ''}">
+          </div>
+          <div class="card-field">
+            <label>गा.वि.स./न.पा.</label>
+            <input type="text" class="jagga-vdc_mp" placeholder="गा.वि.स./न.पा." value="${d.vdc_mp || ''}">
+          </div>
+          <div class="card-field">
+            <label>वडा नं.</label>
+            <input type="text" class="jagga-wada" placeholder="वडा" value="${d.wada || ''}">
+          </div>
+          <div class="card-field">
+            <label>कित्ता नं.</label>
+            <input type="text" class="jagga-kitta" placeholder="कित्ता" value="${d.kitta || ''}">
+          </div>
+          <div class="card-field">
+            <label>क्षेत्रफल</label>
+            <input type="text" class="jagga-area" placeholder="क्षेत्रफल" value="${d.area || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मूल्य</label>
+            <input type="text" class="jagga-price" placeholder="मूल्य" value="${d.price || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="jagga-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="jagga-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createNagadCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>विवरण</label>
+            <input type="text" class="nagad-details" placeholder="विवरण" value="${d.details || ''}">
+          </div>
+          <div class="card-field">
+            <label>परिमाण</label>
+            <input type="text" class="nagad-quantity" placeholder="परिमाण" value="${d.quantity || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्त मिति</label>
+            <input type="text" class="nagad-date" placeholder="मिति" value="${d.date || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मूल्य</label>
+            <input type="text" class="nagad-price" placeholder="मूल्य" value="${d.price || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="nagad-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="nagad-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createBankCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>खातावालाको नाम</label>
+            <input type="text" class="bank-account_holder" placeholder="खातावाला" value="${d.account_holder || ''}">
+          </div>
+          <div class="card-field">
+            <label>संस्थाको नाम र ठेगाना</label>
+            <input type="text" class="bank-bank_name_address" placeholder="नाम र ठेगाना" value="${d.bank_name_address || ''}">
+          </div>
+          <div class="card-field">
+            <label>खाता नं.</label>
+            <input type="text" class="bank-account_no" placeholder="खाता नं." value="${d.account_no || ''}">
+          </div>
+          <div class="card-field">
+            <label>मौज्दात रकम</label>
+            <input type="text" class="bank-balance" placeholder="रकम" value="${d.balance || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="bank-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="bank-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createSecuritiesCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>शेयरधनीको नाम, थर</label>
+            <input type="text" class="securities-shareholder_name" placeholder="शेयरधनी" value="${d.shareholder_name || ''}">
+          </div>
+          <div class="card-field">
+            <label>कम्पनीको नाम, ठेगाना</label>
+            <input type="text" class="securities-company_name_address" placeholder="नाम र ठेगाना" value="${d.company_name_address || ''}">
+          </div>
+          <div class="card-field">
+            <label>किस्म</label>
+            <input type="text" class="securities-type" placeholder="किस्म" value="${d.type || ''}">
+          </div>
+          <div class="card-field">
+            <label>संख्या</label>
+            <input type="text" class="securities-quantity" placeholder="संख्या" value="${d.quantity || ''}">
+          </div>
+          <div class="card-field">
+            <label>रकम</label>
+            <input type="text" class="securities-amount" placeholder="रकम" value="${d.amount || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="securities-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="securities-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createLoanCells(data) {
+      const d = data || {};
+      const t = d.loan_type || "taken";
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>व्यक्ति/संस्थाको नाम, ठेगाना</label>
+            <input type="text" class="loan-borrower_lender_name_address" placeholder="नाम र ठेगाना" value="${d.borrower_lender_name_address || ''}">
+          </div>
+          <div class="card-field">
+            <label>ऋणको प्रकार</label>
+            <select class="loan-loan_type" style="width: 100%; height: 36px; border: 1px solid var(--input-border); border-radius: 2px; background: var(--input-bg); color: var(--input-text); box-sizing: border-box;">
+              <option value="taken" ${t === 'taken' ? 'selected' : ''}>लिएको (Taken)</option>
+              <option value="given" ${t === 'given' ? 'selected' : ''}>दिएको (Given)</option>
+              <option value="repaid" ${t === 'repaid' ? 'selected' : ''}>तिरेको (Repaid)</option>
+            </select>
+          </div>
+          <div class="card-field">
+            <label>रकम</label>
+            <input type="text" class="loan-amount" placeholder="रकम" value="${d.amount || ''}">
+          </div>
+          <div class="card-field">
+            <label>मिति</label>
+            <input type="text" class="loan-date" placeholder="मिति" value="${d.date || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="loan-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createVehiclesCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>सवारी धनीको नाम</label>
+            <input type="text" class="vehicles-owner_name" placeholder="सवारी धनी" value="${d.owner_name || ''}">
+          </div>
+          <div class="card-field">
+            <label>सवारीको किसिम र नम्बर</label>
+            <input type="text" class="vehicles-type_no" placeholder="किसिम र नं." value="${d.type_no || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मूल्य</label>
+            <input type="text" class="vehicles-price" placeholder="खरीद मूल्य" value="${d.price || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मिति</label>
+            <input type="text" class="vehicles-date" placeholder="मिति" value="${d.date || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="vehicles-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="vehicles-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createAgricultureCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>विवरण</label>
+            <input type="text" class="agriculture-details" placeholder="विवरण" value="${d.details || ''}">
+          </div>
+          <div class="card-field">
+            <label>संख्या</label>
+            <input type="text" class="agriculture-quantity" placeholder="संख्या" value="${d.quantity || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मूल्य</label>
+            <input type="text" class="agriculture-price" placeholder="मूल्य" value="${d.price || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्त मिति</label>
+            <input type="text" class="agriculture-date" placeholder="मिति" value="${d.date || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="agriculture-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="agriculture-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    function createOthersCells(data) {
+      const d = data || {};
+      return `
+        <div class="card-row-header">
+          <span class="card-row-title">क्रम संख्या #</span>
+          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+        </div>
+        <div class="card-grid">
+          <div class="card-field">
+            <label>विवरण</label>
+            <input type="text" class="others-details" placeholder="विवरण" value="${d.details || ''}">
+          </div>
+          <div class="card-field">
+            <label>खरीद मूल्य</label>
+            <input type="text" class="others-price" placeholder="मूल्य" value="${d.price || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्त मिति</label>
+            <input type="text" class="others-date" placeholder="मिति" value="${d.date || ''}">
+          </div>
+          <div class="card-field">
+            <label>प्राप्तिको स्रोत</label>
+            <input type="text" class="others-source" placeholder="स्रोत" value="${d.source || ''}">
+          </div>
+          <div class="card-field font-wide">
+            <label>कैफियत</label>
+            <input type="text" class="others-remarks" placeholder="कैफियत" value="${d.remarks || ''}">
+          </div>
+        </div>
+      `;
+    }
+
+    // --- Status preview UI ---
+    function showStatus(state, message) {
+      const container = document.getElementById('previewContainer');
+      if (!container) return;
+
+      if (!previewEnabled) {
+        container.innerHTML = `
+          <div class="preview-status-card disabled">
+            <div class="preview-status-title">document preview is disabled</div>
+          </div>
+        `;
+        return;
+      }
+
+      if (state === 'compiling') {
+        container.innerHTML = `
+          <div class="preview-status-card loading">
+            <div class="preview-status-title">${message ? message.toLowerCase() : 'compiling...'}</div>
+          </div>
+        `;
+      } else if (state === 'error') {
+        container.innerHTML = `
+          <div class="preview-status-card error">
+            <div class="preview-status-title">compiling error</div>
+            <div class="preview-status-desc" style="white-space: pre-wrap; text-align: left; font-family: var(--mono-font); font-size: 0.8rem; margin-top: 1rem; width: 100%; border: 1px solid var(--status-error-text); padding: 0.75rem; border-radius: 2px; overflow-x: auto; max-height: 250px;">${message}</div>
+          </div>
+        `;
+      }
+    }
+
+    // --- Preview toggle ---
+    function togglePreview() {
+      previewEnabled = !previewEnabled;
+      try { localStorage.setItem('propertydesc_preview', previewEnabled ? '1' : '0'); } catch (e) { }
+      applyPreviewState();
+    }
+
+    function applyPreviewState() {
+      const btn = document.getElementById('previewToggleBtn');
+      if (previewEnabled) {
+        if (btn) { btn.classList.add('active'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Preview'; }
+        if (typstReady) {
+          compilePreview();
+        }
+      } else {
+        if (btn) { btn.classList.remove('active'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg> Preview'; }
+        showStatus('success');
+      }
+    }
+
+    function initActions() {
+      try {
+        const v = localStorage.getItem('propertydesc_preview');
+        if (v !== null) {
+          previewEnabled = (v === '1');
+        } else {
+          const isMobile = window.matchMedia("(max-width: 768px)").matches ||
+            /Android|iPhone|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+          previewEnabled = !isMobile;
+        }
+      } catch (e) {
+        previewEnabled = true;
+      }
+      applyPreviewState();
+    }
+
+    // --- Dynamic row helpers ---
+    function updateRowNumbers() {
+      const containers = document.querySelectorAll('.card-list-body');
+      containers.forEach(container => {
+        const rows = container.querySelectorAll('.dynamic-row');
+        rows.forEach((row, index) => {
+          const title = row.querySelector('.card-row-title');
+          if (title) {
+            title.textContent = `क्रम संख्या #${index + 1}`;
+          }
+        });
+      });
+    }
+
+    function addRow(tableId, htmlCreator, rowData = null) {
+      const tbody = document.querySelector(`#${tableId} .card-list-body`);
+      if (!tbody) return;
+      const tr = document.createElement('div');
+      tr.className = 'dynamic-row card-row';
+      tr.innerHTML = htmlCreator(rowData);
+      tbody.appendChild(tr);
+
+      const inputs = tr.querySelectorAll('input, select');
+      const debouncedPreview = debounce(compilePreview, 400);
+      inputs.forEach(input => {
+        input.addEventListener('input', debouncedPreview);
+        input.addEventListener('change', debouncedPreview);
+      });
+
+      updateRowNumbers();
+
+      if (typstReady) {
+        compilePreview();
+      }
+    }
+
+    function removeRow(btn) {
+      const tr = btn.closest('.dynamic-row');
+      if (tr) {
+        tr.remove();
+        updateRowNumbers();
+        compilePreview();
+      }
+    }
+
+    // --- Collect & Serialize Form State ---
+    function collectTableData(tableId, prefix, fieldsList) {
+      const result = [];
+      const rows = document.querySelectorAll(`#${tableId} .card-list-body .dynamic-row`);
+      rows.forEach(row => {
+        const obj = {};
+        let hasData = false;
+        fieldsList.forEach(f => {
+          const el = row.querySelector(`.${prefix}-${f}`);
+          if (el) {
+            obj[f] = el.value.trim();
+            if (obj[f]) hasData = true;
+          }
+        });
+        if (hasData) {
+          result.push(obj);
+        }
+      });
+      return result;
+    }
+
+    function collectFormData() {
+      const data = {};
+
+      // Standard text fields
+      const simpleFields = [
+        "nama", "pad", "nikaya", "karyalaya", "fiscal_year",
+        "sthayi_jilla", "sthayi_vdc_mp", "sthayi_wada", "sthayi_tol",
+        "temporary_jilla", "temporary_vdc_mp", "temporary_wada", "temporary_tol",
+        "sanket_no", "pan", "decl_name", "decl_pad", "decl_miti"
+      ];
+
+      simpleFields.forEach(f => {
+        const el = document.getElementById(f);
+        data[f] = el ? el.value.trim() : "";
+      });
+
+      // Page Break & Sync Toggles
+      const checkboxFields = [
+        "sync_address",
+        "break_ghar", "break_jagga", "break_nagad", "break_bank",
+        "break_securities", "break_loan", "break_vehicles", "break_agriculture", "break_others"
+      ];
+
+      checkboxFields.forEach(f => {
+        const el = document.getElementById(f);
+        data[f] = el ? el.checked : false;
+      });
+
+      // Dynamic Tables
+      data["table_ghar"] = collectTableData("table_ghar", "ghar", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
+      data["table_jagga"] = collectTableData("table_jagga", "jagga", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
+      data["table_nagad"] = collectTableData("table_nagad", "nagad", ['details', 'quantity', 'date', 'price', 'source', 'remarks']);
+      data["table_bank"] = collectTableData("table_bank", "bank", ['account_holder', 'bank_name_address', 'account_no', 'balance', 'source', 'remarks']);
+      data["table_securities"] = collectTableData("table_securities", "securities", ['shareholder_name', 'company_name_address', 'type', 'quantity', 'amount', 'source', 'remarks']);
+      data["table_loan"] = collectTableData("table_loan", "loan", ['borrower_lender_name_address', 'loan_type', 'amount', 'date', 'remarks']);
+      data["table_vehicles"] = collectTableData("table_vehicles", "vehicles", ['owner_name', 'type_no', 'price', 'date', 'source', 'remarks']);
+      data["table_agriculture"] = collectTableData("table_agriculture", "agriculture", ['details', 'quantity', 'price', 'date', 'source', 'remarks']);
+      data["table_others"] = collectTableData("table_others", "others", ['details', 'price', 'date', 'source', 'remarks']);
+
+      return data;
+    }
+
+    function prepareTypstContent(data) {
+      const jsonStr = JSON.stringify(data);
+      const escapedJson = jsonStr
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"');
+
+      const content = mainTypContent.replace(
+        '#let data = json("data.json")',
+        `#let data = json.decode("${escapedJson}")`
+      );
+
+      return content;
+    }
+
+    function debounce(func, wait) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    // --- WebAssembly Render SVG Preview ---
+    async function compilePreview() {
+      if (!previewEnabled || !typstReady) {
+        if (typstReady) showStatus('success');
+        return;
+      }
+      showStatus('compiling', 'Compiling preview...');
+
+      try {
+        const data = collectFormData();
+
+        try {
+          localStorage.setItem('propertydesc_form_data', JSON.stringify(data));
+        } catch (e) {
+          console.warn("Could not save form state:", e);
+        }
+
+        const compiledContent = prepareTypstContent(data);
+        const svg = await $typst.svg({ mainContent: compiledContent });
+
+        const previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = svg;
+
+        const svgElem = previewContainer.firstElementChild;
+        if (svgElem) {
+          svgElem.removeAttribute('width');
+          svgElem.removeAttribute('height');
+          svgElem.style.width = '100%';
+          svgElem.style.height = 'auto';
+
+          const pages = svgElem.querySelectorAll('.typst-page');
+          pages.forEach((page) => {
+            const width = parseFloat(page.getAttribute('data-page-width')) || 596;
+            const height = parseFloat(page.getAttribute('data-page-height')) || 842;
+
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', '0');
+            rect.setAttribute('y', '0');
+            rect.setAttribute('width', width);
+            rect.setAttribute('height', height);
+            rect.setAttribute('fill', '#ffffff');
+            rect.setAttribute('stroke', '#cbd5e0');
+            rect.setAttribute('stroke-width', '1.5');
+
+            page.insertBefore(rect, page.firstChild);
+          });
+        }
+
+        showStatus('success');
+      } catch (err) {
+        console.error("Preview compilation failed:", err);
+        showStatus('error', err.message);
+      }
+    }
+
+    // --- WebAssembly PDF Generation ---
+    async function compilePDF() {
+      if (!typstReady) return;
+      const btn = document.getElementById("downloadBtn");
+      btn.disabled = true;
+      showStatus('compiling', 'Generating PDF...');
+
+      try {
+        const data = collectFormData();
+        const compiledContent = prepareTypstContent(data);
+
+        const pdfData = await $typst.pdf({ mainContent: compiledContent });
+        const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
+
+        const url = URL.createObjectURL(pdfBlob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "property_declaration_form.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showStatus('success');
+      } catch (err) {
+        console.error("PDF generation failed:", err);
+        showStatus('error', err.message);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // --- Initializers ---
+    function initFormListeners() {
+      const form = document.getElementById('mainForm');
+      const debouncedPreview = debounce(compilePreview, 400);
+      form.addEventListener('input', debouncedPreview);
+      form.addEventListener('change', debouncedPreview);
+    }
+
+    async function initTypst() {
+      showStatus('compiling', 'Initializing...');
+
+      try {
+        $typst.setCompilerInitOptions({
+          getModule: () =>
+            'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
+        });
+        $typst.setRendererInitOptions({
+          getModule: () =>
+            'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
+        });
+
+        const res = await fetch('main.typ?t=' + Date.now());
+        mainTypContent = await res.text();
+
+        const fontFiles = [
+          'fonts/Times New Roman.ttf',
+          'fonts/Times New Roman Bold.ttf',
+          'fonts/Times New Roman Italic.ttf',
+          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Regular.ttf',
+          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Bold.ttf',
+          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Medium.ttf'
+        ];
+
+        const buffers = [];
+        for (const file of fontFiles) {
+          try {
+            const fontRes = await fetch(file);
+            if (fontRes.ok) {
+              const arrayBuffer = await fontRes.arrayBuffer();
+              buffers.push(new Uint8Array(arrayBuffer));
+            }
+          } catch (fontErr) {
+            console.warn("Error fetching font file:", file, fontErr);
+          }
+        }
+
+        if (buffers.length > 0) {
+          $typst.use(window.TypstSnippet.preloadFonts(buffers));
+        }
+
+        typstReady = true;
+        await compilePreview();
+      } catch (err) {
+        console.error("Failed to initialize WASM application:", err);
+        showStatus('error', 'Initialization failed: ' + err.message);
+      }
+    }
+
+    function setupAddressSync() {
+      const syncCheckbox = document.getElementById('sync_address');
+      const permJilla = document.getElementById('sthayi_jilla');
+      const permVdc = document.getElementById('sthayi_vdc_mp');
+      const permWada = document.getElementById('sthayi_wada');
+      const permTol = document.getElementById('sthayi_tol');
+
+      const tempJilla = document.getElementById('temporary_jilla');
+      const tempVdc = document.getElementById('temporary_vdc_mp');
+      const tempWada = document.getElementById('temporary_wada');
+      const tempTol = document.getElementById('temporary_tol');
+
+      function sync() {
+        if (!syncCheckbox || !permJilla || !tempJilla) return;
+        if (syncCheckbox.checked) {
+          tempJilla.value = permJilla.value;
+          tempVdc.value = permVdc.value;
+          tempWada.value = permWada.value;
+          tempTol.value = permTol.value;
+
+          tempJilla.disabled = true;
+          tempVdc.disabled = true;
+          tempWada.disabled = true;
+          tempTol.disabled = true;
+        } else {
+          tempJilla.disabled = false;
+          tempVdc.disabled = false;
+          tempWada.disabled = false;
+          tempTol.disabled = false;
+        }
+      }
+
+      if (syncCheckbox) {
+        syncCheckbox.addEventListener('change', () => {
+          sync();
+          compilePreview();
+        });
+      }
+
+      const permInputs = [permJilla, permVdc, permWada, permTol];
+      const debouncedPreview = debounce(compilePreview, 400);
+      permInputs.forEach(input => {
+        if (input) {
+          input.addEventListener('input', () => {
+            if (syncCheckbox && syncCheckbox.checked) {
+              sync();
+              debouncedPreview();
+            }
+          });
+        }
+      });
+
+      // Run sync initially
+      sync();
+    }
+
+    function setupDeclarationSync() {
+      const nameInput = document.getElementById('nama');
+      const padInput = document.getElementById('pad');
+      const declNameInput = document.getElementById('decl_name');
+      const declPadInput = document.getElementById('decl_pad');
+
+      if (!nameInput || !padInput || !declNameInput || !declPadInput) return;
+
+      const debouncedPreview = debounce(compilePreview, 400);
+
+      nameInput.addEventListener('input', () => {
+        declNameInput.value = nameInput.value;
+        debouncedPreview();
+      });
+
+      padInput.addEventListener('input', () => {
+        declPadInput.value = padInput.value;
+        debouncedPreview();
+      });
+
+      // Initially sync if declaration inputs are empty
+      if (!declNameInput.value && nameInput.value) {
+        declNameInput.value = nameInput.value;
+      }
+      if (!declPadInput.value && padInput.value) {
+        declPadInput.value = padInput.value;
+      }
+    }
+
+    function loadFormDataFromLocalStorage() {
+      try {
+        const storedStr = localStorage.getItem('propertydesc_form_data');
+
+        // Setup configurations for tables
+        const tableConfigs = [
+          { id: "table_ghar", creator: createGharCells, key: "table_ghar" },
+          { id: "table_jagga", creator: createJaggaCells, key: "table_jagga" },
+          { id: "table_nagad", creator: createNagadCells, key: "table_nagad" },
+          { id: "table_bank", creator: createBankCells, key: "table_bank" },
+          { id: "table_securities", creator: createSecuritiesCells, key: "table_securities" },
+          { id: "table_loan", creator: createLoanCells, key: "table_loan" },
+          { id: "table_vehicles", creator: createVehiclesCells, key: "table_vehicles" },
+          { id: "table_agriculture", creator: createAgricultureCells, key: "table_agriculture" },
+          { id: "table_others", creator: createOthersCells, key: "table_others" }
+        ];
+
+        if (storedStr) {
+          const data = JSON.parse(storedStr);
+          if (data) {
+            const simpleFields = [
+              "nama", "pad", "nikaya", "karyalaya", "fiscal_year",
+              "sthayi_jilla", "sthayi_vdc_mp", "sthayi_wada", "sthayi_tol",
+              "temporary_jilla", "temporary_vdc_mp", "temporary_wada", "temporary_tol",
+              "sanket_no", "pan", "decl_name", "decl_pad", "decl_miti"
+            ];
+            simpleFields.forEach(f => {
+              const el = document.getElementById(f);
+              if (el && data[f] !== undefined) {
+                el.value = data[f];
+              }
+            });
+
+            const checkboxFields = [
+              "sync_address",
+              "break_ghar", "break_jagga", "break_nagad", "break_bank",
+              "break_securities", "break_loan", "break_vehicles", "break_agriculture", "break_others"
+            ];
+            checkboxFields.forEach(f => {
+              const el = document.getElementById(f);
+              if (el && data[f] !== undefined) {
+                el.checked = !!data[f];
+              }
+            });
+
+            tableConfigs.forEach(cfg => {
+              const tbody = document.querySelector(`#${cfg.id} .card-list-body`);
+              if (tbody) tbody.innerHTML = "";
+              if (data[cfg.key] && data[cfg.key].length > 0) {
+                data[cfg.key].forEach(row => {
+                  addRow(cfg.id, cfg.creator, row);
+                });
+              } else {
+                addRow(cfg.id, cfg.creator);
+              }
+            });
+            return;
+          }
+        }
+
+        // Default empty layout if no storage exists
+        tableConfigs.forEach(cfg => {
+          addRow(cfg.id, cfg.creator);
+        });
+
+      } catch (e) {
+        console.error("Error loading cached form data:", e);
+      }
+    }
+
+    function startApp() {
+      loadFormDataFromLocalStorage();
+      initActions();
+      initTypst();
+      initFormListeners();
+      setupAddressSync();
+      setupDeclarationSync();
+    }
+
+    if (window.$typst) {
+      startApp();
+    } else {
+      document.getElementById('typst').addEventListener('load', startApp);
+    }
+  </script>
+
+</body>
+
+</html>
