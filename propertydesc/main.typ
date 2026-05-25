@@ -83,26 +83,26 @@
 ]
 #v(8pt)
 
-*सार्वजनिक पदधारण गरेको व्यक्तिको नाम, थर:-* #f(data.at("nama", default: ""))
+सार्वजनिक पदधारण गरेको व्यक्तिको नाम, थर:- #f(data.at("nama", default: ""))
 
 #v(4pt)
 #grid(
   columns: (1.2fr, 1.5fr),
   row-gutter: 10pt,
   [
-    *पद :-* #f(data.at("pad", default: "")) \
+    पद :- #f(data.at("pad", default: "")) \
   ],
   [
-    *विवरण पेश गरेको निकाय :-* #f(data.at("nikaya", default: "")) \
+    विवरण पेश गरेको निकाय :- #f(data.at("nikaya", default: "")) \
     #v(10pt)
-    *कार्यालय :-* #f(data.at("karyalaya", default: "")) \
+    कार्यालय :- #f(data.at("karyalaya", default: "")) \
     #v(10pt)
-    *विवरण पेश गरेको आ.ब. :-* #f(data.at("fiscal_year", default: ""))
+    विवरण पेश गरेको आ.ब. :- #f(data.at("fiscal_year", default: ""))
   ]
 )
 
 #v(6pt)
-*स्थायी ठेगाना :-*
+*स्थायी ठेगाना :*
 #grid(
   columns: (1fr, 1.2fr, 0.8fr, 1fr),
   [जिल्ला :- #f_addr(data.at("sthayi_jilla", default: ""))],
@@ -124,8 +124,8 @@
 #v(10pt)
 #grid(
   columns: (1fr, 1fr),
-  [*कर्मचारी भए संकेत नम्बर:-* #f(data.at("sanket_no", default: ""))],
-  [*स्थायी लेखा नं. :-* #f(data.at("pan", default: ""))]
+  [कर्मचारी भए संकेत नम्बर:- #f(data.at("sanket_no", default: ""))],
+  [स्थायी लेखा नं.:- #f(data.at("pan", default: ""))]
 )
 
 
@@ -439,10 +439,10 @@
       columns: (1fr),
       row-gutter: 10pt,
       align: left,
-      [*नाम :-* #cv(data.at("decl_name", default: ""))],
-      [*पद :-* #cv(data.at("decl_pad", default: ""))],
-      [*दस्तखत :-*],
-      [*मिति :-* #cv(data.at("decl_miti", default: ""))]
+      [नाम :- #f(data.at("decl_name", default: ""))],
+      [पद :- #f(data.at("decl_pad", default: ""))],
+      [दस्तखत :-],
+      [मिति :- #f(data.at("decl_miti", default: ""))]
     )
   ]
 ]
