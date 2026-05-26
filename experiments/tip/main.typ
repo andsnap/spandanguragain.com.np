@@ -115,7 +115,6 @@
 #v(16pt)
 
 // ── Footer ─────────────────────────────────────────────────────────────────
-#align(bottom)[
   #grid(
     columns: (1fr, auto, auto, auto),
     column-gutter: 2cm,
@@ -134,4 +133,3 @@
       #overline(offset: -15pt)[प्रमुखको दस्तखत]
     ],
   )
-]
