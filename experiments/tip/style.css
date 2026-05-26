@@ -15,8 +15,6 @@ body {
   flex: 1 1 50%;
 }
 
-/* ── Dynamic subjects (handled globally by card-list styles) ──────────────── */
-
 .indicator-title {
   font-size: 0.95rem;
   font-weight: 600;
