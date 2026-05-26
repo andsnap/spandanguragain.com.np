@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ne">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>शिक्षक सुधार योजना फाराम</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%2220%22 y=%2210%22 width=%2260%22 height=%2280%22 rx=%225%22 fill=%22%230f0f0f%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2230%22 x2=%2265%22 y2=%2230%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2250%22 x2=%2265%22 y2=%2250%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2270%22 x2=%2255%22 y2=%2270%22 stroke=%22white%22 stroke-width=%225%22/></svg>">
+  <!-- Load the official lite browser bundle from @myriaddreamin/typst.ts -->
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js"
+    id="typst"></script>
+</head>
+
+<body>
+
+  <div class="home-link-container">
+    <a href="../" class="home-link">more forms</a>
+    <a href="../../" class="home-link">spandanguragain.com.np</a>
+  </div>
+
+  <h2>शिक्षक सुधार योजना</h2>
+  <h3>(सूचकको लाइन)</h3>
+
+  <hr>
+
+  <main class="main-container">
+
+    <!-- Left Column: Interactive Form -->
+    <div class="form-column">
+      <form id="mainForm">
+
+        <!-- ── General Info ─────────────────────────────────────────── -->
+        <fieldset>
+          <legend>सामान्य विवरण</legend>
+
+          <p>
+            <label for="teacher_name">शिक्षकको नाम :</label><br>
+            <input type="text" id="teacher_name" name="teacher_name" size="40">
+          </p>
+
+          <p>
+            <label for="school_name">विद्यालयको नाम :</label><br>
+            <input type="text" id="school_name" name="school_name" size="60">
+          </p>
+
+          <p>
+            <label for="period">मूल्याङ्कन अवधि :</label><br>
+            <input type="text" id="period" name="period" size="35" placeholder="श्रावण-मङ्सीर, २०८१">
+          </p>
+        </fieldset>
+
+        <!-- ── Indicator 1: Student Achievement ───────────────────── -->
+        <fieldset>
+          <legend>सूचक १ : विद्यार्थीको उपलब्धि (उत्तीर्ण प्रतिशत)</legend>
+
+          <div class="card-list-container">
+            <div class="card-list-body" id="subjectsContainer">
+              <!-- Subjects will be dynamically injected here -->
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary" id="addSubjectBtn" style="width: auto; min-width: 120px; height: 28px; padding: 0 0.75rem; font-size: 0.75rem; border-radius: 2px; margin-top: 1rem; margin-bottom: 1.5rem;">
+            + विषय थप्नुहोस्
+          </button>
+
+          <!-- Template for a new subject -->
+          <template id="subjectTemplate">
+            <div class="card-row subject-item">
+              <div class="card-row-header">
+                <div class="card-row-title">विषय #<span class="subject-number"></span></div>
+                <button type="button" class="btn-delete remove-btn" title="हटाउनुहोस्" style="margin: 0;">×</button>
+              </div>
+              <div class="card-grid">
+                <div class="card-field">
+                  <label>कक्षा</label>
+                  <input type="text" name="class" class="dynamic-input" placeholder="कक्षा">
+                </div>
+                <div class="card-field">
+                  <label>विषय</label>
+                  <input type="text" name="subject" class="dynamic-input" placeholder="विषय">
+                </div>
+                <div class="card-field">
+                  <label>हालको %</label>
+                  <input type="text" name="current" class="dynamic-input" placeholder="हालको %">
+                </div>
+                <div class="card-field">
+                  <label>लक्ष्य %</label>
+                  <input type="text" name="expected" class="dynamic-input" placeholder="लक्ष्य %">
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <!-- Action plan covering all 3 subjects -->
+          <p style="margin-top: 0.8rem;">
+            <label for="row1_actions">सुधारका उपाय / कार्ययोजना :</label><br>
+            <textarea id="row1_actions" name="row1_actions" rows="4" cols="70"></textarea>
+          </p>
+        </fieldset>
+
+        <!-- ── Indicators 2–6: Other Indicators ───────────────────── -->
+        <fieldset>
+          <legend>अन्य सूचकहरू (सूचक २–६)</legend>
+
+          <h4 class="indicator-title">२. स्वमूल्याङ्कनका आधारमा शिक्षणमा शैक्षिक सामग्री प्रयोगका स्थिति (न्यूनबाट उच्च तहको दरमा १,२,३,४ मा मापन गर्ने)</h4>
+          <p>
+            <label for="row2_current">हालको :</label>
+            <input type="text" id="row2_current" name="row2_current" size="10">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="row2_expected">लक्ष्य :</label>
+            <input type="text" id="row2_expected" name="row2_expected" size="10">
+          </p>
+          <p>
+            <label for="row2_actions">सुधारका उपाय / कार्ययोजना :</label><br>
+            <textarea id="row2_actions" name="row2_actions" rows="3" cols="70"></textarea>
+          </p>
+          <br>
+
+          <h4 class="indicator-title">३. स्वमूल्याङ्कनका आधारमा क्रियाकलाप सञ्चालनको स्थिति (न्यूनबाट उच्च तहको दरमा १,२,३,४ मा मापन गर्ने)</h4>
+          <p>
+            <label for="row3_current">हालको :</label>
+            <input type="text" id="row3_current" name="row3_current" size="10">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="row3_expected">लक्ष्य :</label>
+            <input type="text" id="row3_expected" name="row3_expected" size="10">
+          </p>
+          <p>
+            <label for="row3_actions">सुधारका उपाय / कार्ययोजना :</label><br>
+            <textarea id="row3_actions" name="row3_actions" rows="3" cols="70"></textarea>
+          </p>
+          <br>
+
+          <h4 class="indicator-title">४. प्रतिदिन क्रियाकलाप विवरण तयारी सहितको शिक्षण गरेको पाठ सङ्ख्या</h4>
+          <p>
+            <label for="row4_current">हालको :</label>
+            <input type="text" id="row4_current" name="row4_current" size="10">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="row4_expected">लक्ष्य :</label>
+            <input type="text" id="row4_expected" name="row4_expected" size="10">
+          </p>
+          <p>
+            <label for="row4_actions">सुधारका उपाय / कार्ययोजना :</label><br>
+            <textarea id="row4_actions" name="row4_actions" rows="3" cols="70"></textarea>
+          </p>
+          <br>
+
+          <h4 class="indicator-title">५. स्वमूल्याङ्कनका आधारमा प्रभावकारी शिक्षणका निमित्त विद्यालय प्र.अ.बाट प्राप्त सहयोगको स्थिति (न्यूनबाट उच्च तहको दरमा १,२,३,४ मा मापन गर्ने)</h4>
+          <p>
+            <label for="row5_current">हालको :</label>
+            <input type="text" id="row5_current" name="row5_current" size="10">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="row5_expected">लक्ष्य :</label>
+            <input type="text" id="row5_expected" name="row5_expected" size="10">
+          </p>
+          <p>
+            <label for="row5_actions">सुधारका उपाय / कार्ययोजना :</label><br>
+            <textarea id="row5_actions" name="row5_actions" rows="3" cols="70"></textarea>
+          </p>
+          <br>
+
+          <h4 class="indicator-title">६. प्र.अ. / प्रशिक्षकबाट / सहकर्मीबाट कक्षा अवलोकन संख्या</h4>
+          <p>
+            <label for="row6_current">हालको :</label>
+            <input type="text" id="row6_current" name="row6_current" size="10">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="row6_expected">लक्ष्य :</label>
+            <input type="text" id="row6_expected" name="row6_expected" size="10">
+          </p>
+          <p>
+            <label for="row6_actions">सुधारका उपाय / कार्ययोजना :</label><br>
+            <textarea id="row6_actions" name="row6_actions" rows="3" cols="70"></textarea>
+          </p>
+        </fieldset>
+
+        <!-- ── Date ──────────────────────────────────────────────────── -->
+        <fieldset>
+          <legend>मिति</legend>
+          <p>
+            <label for="date">मिति :</label>
+            <input type="text" id="date" name="date" size="25" placeholder="२०८१ श्रावण १">
+          </p>
+        </fieldset>
+
+      </form>
+    </div>
+
+    <!-- Right Column: Live Preview -->
+    <div class="preview-column">
+      <div id="previewContainer"></div>
+    </div>
+
+  </main>
+
+  <!-- Shared form engine -->
+  <script src="../shared/form-engine.js"></script>
+  <script>
+    // Handle dynamic subjects UI
+    const container = document.getElementById('subjectsContainer');
+    const template = document.getElementById('subjectTemplate');
+    const addBtn = document.getElementById('addSubjectBtn');
+    
+    let subjectCount = 0;
+    
+    function addSubject() {
+      subjectCount++;
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('.subject-number').textContent = subjectCount;
+      
+      const item = clone.querySelector('.subject-item');
+      item.querySelector('.remove-btn').addEventListener('click', () => {
+        item.remove();
+        updateSubjectNumbers();
+        // Trigger a preview update
+        document.getElementById('mainForm').dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      
+      container.appendChild(clone);
+      
+      // Auto-focus first input if it's not the initial load
+      if (subjectCount > 1) {
+        item.querySelector('input').focus();
+      }
+    }
+    
+    function updateSubjectNumbers() {
+      const items = container.querySelectorAll('.subject-item');
+      subjectCount = items.length;
+      items.forEach((item, index) => {
+        item.querySelector('.subject-number').textContent = index + 1;
+      });
+    }
+    
+    addBtn.addEventListener('click', () => {
+      addSubject();
+      document.getElementById('mainForm').dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    
+    // Add initial subject
+    addSubject();
+
+    FormEngine.init({
+      formId: 'tip',
+      pdfFilename: 'shikshak_sudhaar_yojana.pdf',
+
+      collectFormData: (data) => {
+        const subjects = [];
+        document.querySelectorAll('.subject-item').forEach(item => {
+          subjects.push({
+            class: item.querySelector('[name="class"]').value || '',
+            subject: item.querySelector('[name="subject"]').value || '',
+            current: item.querySelector('[name="current"]').value || '',
+            expected: item.querySelector('[name="expected"]').value || ''
+          });
+        });
+        
+        // Remove individual dynamic inputs from the top-level data object
+        delete data.class;
+        delete data.subject;
+        delete data.current;
+        delete data.expected;
+        
+        data.subjects = subjects;
+        return data;
+      },
+
+      restoreFormData: (data) => {
+        // Clear existing subjects
+        document.querySelectorAll('.subject-item').forEach(item => item.remove());
+        subjectCount = 0;
+        
+        if (data && data.subjects && data.subjects.length > 0) {
+          data.subjects.forEach(sub => {
+            subjectCount++;
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('.subject-number').textContent = subjectCount;
+            
+            const item = clone.querySelector('.subject-item');
+            
+            // Restore field values
+            if (sub.class) item.querySelector('[name="class"]').value = sub.class;
+            if (sub.subject) item.querySelector('[name="subject"]').value = sub.subject;
+            if (sub.current) item.querySelector('[name="current"]').value = sub.current;
+            if (sub.expected) item.querySelector('[name="expected"]').value = sub.expected;
+            
+            item.querySelector('.remove-btn').addEventListener('click', () => {
+              item.remove();
+              updateSubjectNumbers();
+              document.getElementById('mainForm').dispatchEvent(new Event('input', { bubbles: true }));
+            });
+            
+            container.appendChild(clone);
+          });
+        } else {
+          // Fallback to one empty subject
+          addSubject();
+        }
+      },
+
+      prepareTypstContent: (data, mainTypContent) => {
+        const jsonStr = JSON.stringify(data);
+        const escapedJson = jsonStr.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+        return mainTypContent.replace(
+          '#let data = json("data.json")',
+          `#let data = json.decode("${escapedJson}")`
+        );
+      },
+    });
+  </script>
+
+</body>
+
+</html>

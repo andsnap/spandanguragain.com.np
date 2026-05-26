@@ -1,0 +1,26 @@
+@import '../shared/form-engine.css';
+
+body {
+  max-width: 1600px;
+}
+
+/* Left Form Column */
+.form-column {
+  flex: 1 1 45%;
+  max-width: 900px;
+}
+
+/* Right Sticky Preview Column */
+.preview-column {
+  flex: 1 1 50%;
+}
+
+/* ── Dynamic subjects (handled globally by card-list styles) ──────────────── */
+
+.indicator-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin: 1rem 0 0.5rem 0;
+  line-height: 1.4;
+}
