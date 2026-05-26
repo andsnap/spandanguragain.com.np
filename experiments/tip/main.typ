@@ -116,12 +116,22 @@
 
 // ── Footer ─────────────────────────────────────────────────────────────────
 #align(bottom)[
-#grid(
-  columns: (1fr, 1fr, 1fr, 1fr),
-  column-gutter: 65pt,
-  [मिति : #f(data.at("date", default: ""))],
-  overline(offset: -15pt)[विद्यालयको छाप],
-  overline(offset: -15pt)[शिक्षकको दस्तखत],
-  overline(offset: -15pt)[प्रमुखको दस्तखत],
-)
+  #grid(
+    columns: (1fr, auto, auto, auto),
+    column-gutter: 2cm,
+
+    [मिति : #f(data.at("date", default: ""))],
+
+    align(center)[
+      #overline(offset: -15pt)[विद्यालयको छाप]
+    ],
+
+    align(center)[
+      #overline(offset: -15pt)[शिक्षकको दस्तखत]
+    ],
+
+    align(center)[
+      #overline(offset: -15pt)[प्रमुखको दस्तखत]
+    ],
+  )
 ]
