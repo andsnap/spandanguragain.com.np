@@ -1,0 +1,17 @@
+@import '../shared/form-engine.css';
+
+/* Custom layout sizing unique to propertydesc */
+body {
+  max-width: 1800px;
+}
+
+/* Left Form Column */
+.form-column {
+  flex: 1 1 35%;
+  max-width: 650px;
+}
+
+/* Right Sticky Preview Column */
+.preview-column {
+  flex: 1 1 65%;
+}

@@ -5,13 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>सम्पत्ति विवरण फाराम</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100..900&display=swap"
-    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%2220%22 y=%2210%22 width=%2260%22 height=%2280%22 rx=%225%22 fill=%22%230f0f0f%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2230%22 x2=%2265%22 y2=%2230%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2250%22 x2=%2265%22 y2=%2250%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2270%22 x2=%2255%22 y2=%2270%22 stroke=%22white%22 stroke-width=%225%22/></svg>">
   <script type="module"
     src="https://cdn.jsdelivr.net/npm/@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js"
     id="typst"></script>
@@ -20,7 +16,8 @@
 <body>
 
   <div class="home-link-container">
-    <a href="/" class="home-link">spandanguragain.com.np</a>
+    <a href="../" class="home-link">more forms</a>
+    <a href="../../" class="home-link">spandanguragain.com.np</a>
   </div>
 
   <h2>सम्पत्ति विवरण फाराम</h2>
@@ -28,27 +25,6 @@
     उपदफा (१) बमोजिम)</h3>
 
   <hr>
-
-  <div id="docActions">
-    <button type="button" id="previewToggleBtn" class="doc-action-btn active" onclick="togglePreview()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-      Preview
-    </button>
-
-    <button type="button" id="downloadBtn" class="doc-action-btn" onclick="compilePDF()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-      Download
-    </button>
-  </div>
 
   <main class="main-container">
 
@@ -323,18 +299,15 @@
 
   </main>
 
+  <script src="../shared/form-engine.js"></script>
   <script>
-    let mainTypContent = "";
-    let previewEnabled = true;
-    let typstReady = false;
-
-    // --- Cell builders for dynamic rows ---
+    // Cell builders for dynamic list cards (Nepalese text content remains, comments are in English)
     function createGharCells(data) {
       const d = data || {};
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -382,7 +355,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -430,7 +403,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -466,7 +439,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -502,7 +475,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -543,7 +516,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -579,7 +552,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -615,7 +588,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -651,7 +624,7 @@
       return `
         <div class="card-row-header">
           <span class="card-row-title">क्रम संख्या #</span>
-          <button type="button" class="btn-delete" onclick="removeRow(this)">×</button>
+          <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)">×</button>
         </div>
         <div class="card-grid">
           <div class="card-field">
@@ -678,73 +651,7 @@
       `;
     }
 
-    // --- Status preview UI ---
-    function showStatus(state, message) {
-      const container = document.getElementById('previewContainer');
-      if (!container) return;
-
-      if (!previewEnabled) {
-        container.innerHTML = `
-          <div class="preview-status-card disabled">
-            <div class="preview-status-title">document preview is disabled</div>
-          </div>
-        `;
-        return;
-      }
-
-      if (state === 'compiling') {
-        container.innerHTML = `
-          <div class="preview-status-card loading">
-            <div class="preview-status-title">${message ? message.toLowerCase() : 'compiling...'}</div>
-          </div>
-        `;
-      } else if (state === 'error') {
-        container.innerHTML = `
-          <div class="preview-status-card error">
-            <div class="preview-status-title">compiling error</div>
-            <div class="preview-status-desc" style="white-space: pre-wrap; text-align: left; font-family: var(--mono-font); font-size: 0.8rem; margin-top: 1rem; width: 100%; border: 1px solid var(--status-error-text); padding: 0.75rem; border-radius: 2px; overflow-x: auto; max-height: 250px;">${message}</div>
-          </div>
-        `;
-      }
-    }
-
-    // --- Preview toggle ---
-    function togglePreview() {
-      previewEnabled = !previewEnabled;
-      try { localStorage.setItem('propertydesc_preview', previewEnabled ? '1' : '0'); } catch (e) { }
-      applyPreviewState();
-    }
-
-    function applyPreviewState() {
-      const btn = document.getElementById('previewToggleBtn');
-      if (previewEnabled) {
-        if (btn) { btn.classList.add('active'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Preview'; }
-        if (typstReady) {
-          compilePreview();
-        }
-      } else {
-        if (btn) { btn.classList.remove('active'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg> Preview'; }
-        showStatus('success');
-      }
-    }
-
-    function initActions() {
-      try {
-        const v = localStorage.getItem('propertydesc_preview');
-        if (v !== null) {
-          previewEnabled = (v === '1');
-        } else {
-          const isMobile = window.matchMedia("(max-width: 768px)").matches ||
-            /Android|iPhone|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-          previewEnabled = !isMobile;
-        }
-      } catch (e) {
-        previewEnabled = true;
-      }
-      applyPreviewState();
-    }
-
-    // --- Dynamic row helpers ---
+    // Update index labels inside custom dynamic lists
     function updateRowNumbers() {
       const containers = document.querySelectorAll('.card-list-body');
       containers.forEach(container => {
@@ -758,6 +665,7 @@
       });
     }
 
+    // Add a dynamic list row to the DOM
     function addRow(tableId, htmlCreator, rowData = null) {
       const tbody = document.querySelector(`#${tableId} .card-list-body`);
       if (!tbody) return;
@@ -767,29 +675,16 @@
       tbody.appendChild(tr);
 
       const inputs = tr.querySelectorAll('input, select');
-      const debouncedPreview = debounce(compilePreview, 400);
+      const debouncedPreview = FormEngine.debounce(FormEngine.compilePreview, 400);
       inputs.forEach(input => {
         input.addEventListener('input', debouncedPreview);
         input.addEventListener('change', debouncedPreview);
       });
 
       updateRowNumbers();
-
-      if (typstReady) {
-        compilePreview();
-      }
     }
 
-    function removeRow(btn) {
-      const tr = btn.closest('.dynamic-row');
-      if (tr) {
-        tr.remove();
-        updateRowNumbers();
-        compilePreview();
-      }
-    }
-
-    // --- Collect & Serialize Form State ---
+    // Helper to serialize inputs of a dynamic table/card list
     function collectTableData(tableId, prefix, fieldsList) {
       const result = [];
       const rows = document.querySelectorAll(`#${tableId} .card-list-body .dynamic-row`);
@@ -810,215 +705,7 @@
       return result;
     }
 
-    function collectFormData() {
-      const data = {};
-
-      // Standard text fields
-      const simpleFields = [
-        "nama", "pad", "nikaya", "karyalaya", "fiscal_year",
-        "sthayi_jilla", "sthayi_vdc_mp", "sthayi_wada", "sthayi_tol",
-        "temporary_jilla", "temporary_vdc_mp", "temporary_wada", "temporary_tol",
-        "sanket_no", "pan", "decl_name", "decl_pad", "decl_miti"
-      ];
-
-      simpleFields.forEach(f => {
-        const el = document.getElementById(f);
-        data[f] = el ? el.value.trim() : "";
-      });
-
-      // Page Break & Sync Toggles
-      const checkboxFields = [
-        "sync_address",
-        "break_ghar", "break_jagga", "break_nagad", "break_bank",
-        "break_securities", "break_loan", "break_vehicles", "break_agriculture", "break_others"
-      ];
-
-      checkboxFields.forEach(f => {
-        const el = document.getElementById(f);
-        data[f] = el ? el.checked : false;
-      });
-
-      // Dynamic Tables
-      data["table_ghar"] = collectTableData("table_ghar", "ghar", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
-      data["table_jagga"] = collectTableData("table_jagga", "jagga", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
-      data["table_nagad"] = collectTableData("table_nagad", "nagad", ['details', 'quantity', 'date', 'price', 'source', 'remarks']);
-      data["table_bank"] = collectTableData("table_bank", "bank", ['account_holder', 'bank_name_address', 'account_no', 'balance', 'source', 'remarks']);
-      data["table_securities"] = collectTableData("table_securities", "securities", ['shareholder_name', 'company_name_address', 'type', 'quantity', 'amount', 'source', 'remarks']);
-      data["table_loan"] = collectTableData("table_loan", "loan", ['borrower_lender_name_address', 'loan_type', 'amount', 'date', 'remarks']);
-      data["table_vehicles"] = collectTableData("table_vehicles", "vehicles", ['owner_name', 'type_no', 'price', 'date', 'source', 'remarks']);
-      data["table_agriculture"] = collectTableData("table_agriculture", "agriculture", ['details', 'quantity', 'price', 'date', 'source', 'remarks']);
-      data["table_others"] = collectTableData("table_others", "others", ['details', 'price', 'date', 'source', 'remarks']);
-
-      return data;
-    }
-
-    function prepareTypstContent(data) {
-      const jsonStr = JSON.stringify(data);
-      const escapedJson = jsonStr
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"');
-
-      const content = mainTypContent.replace(
-        '#let data = json("data.json")',
-        `#let data = json.decode("${escapedJson}")`
-      );
-
-      return content;
-    }
-
-    function debounce(func, wait) {
-      let timeout;
-      return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-      };
-    }
-
-    // --- WebAssembly Render SVG Preview ---
-    async function compilePreview() {
-      if (!previewEnabled || !typstReady) {
-        if (typstReady) showStatus('success');
-        return;
-      }
-      showStatus('compiling', 'Compiling preview...');
-
-      try {
-        const data = collectFormData();
-
-        try {
-          localStorage.setItem('propertydesc_form_data', JSON.stringify(data));
-        } catch (e) {
-          console.warn("Could not save form state:", e);
-        }
-
-        const compiledContent = prepareTypstContent(data);
-        const svg = await $typst.svg({ mainContent: compiledContent });
-
-        const previewContainer = document.getElementById('previewContainer');
-        previewContainer.innerHTML = svg;
-
-        const svgElem = previewContainer.firstElementChild;
-        if (svgElem) {
-          svgElem.removeAttribute('width');
-          svgElem.removeAttribute('height');
-          svgElem.style.width = '100%';
-          svgElem.style.height = 'auto';
-
-          const pages = svgElem.querySelectorAll('.typst-page');
-          pages.forEach((page) => {
-            const width = parseFloat(page.getAttribute('data-page-width')) || 596;
-            const height = parseFloat(page.getAttribute('data-page-height')) || 842;
-
-            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            rect.setAttribute('x', '0');
-            rect.setAttribute('y', '0');
-            rect.setAttribute('width', width);
-            rect.setAttribute('height', height);
-            rect.setAttribute('fill', '#ffffff');
-            rect.setAttribute('stroke', '#cbd5e0');
-            rect.setAttribute('stroke-width', '1.5');
-
-            page.insertBefore(rect, page.firstChild);
-          });
-        }
-
-        showStatus('success');
-      } catch (err) {
-        console.error("Preview compilation failed:", err);
-        showStatus('error', err.message);
-      }
-    }
-
-    // --- WebAssembly PDF Generation ---
-    async function compilePDF() {
-      if (!typstReady) return;
-      const btn = document.getElementById("downloadBtn");
-      btn.disabled = true;
-      showStatus('compiling', 'Generating PDF...');
-
-      try {
-        const data = collectFormData();
-        const compiledContent = prepareTypstContent(data);
-
-        const pdfData = await $typst.pdf({ mainContent: compiledContent });
-        const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
-
-        const url = URL.createObjectURL(pdfBlob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "property_declaration_form.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        showStatus('success');
-      } catch (err) {
-        console.error("PDF generation failed:", err);
-        showStatus('error', err.message);
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    // --- Initializers ---
-    function initFormListeners() {
-      const form = document.getElementById('mainForm');
-      const debouncedPreview = debounce(compilePreview, 400);
-      form.addEventListener('input', debouncedPreview);
-      form.addEventListener('change', debouncedPreview);
-    }
-
-    async function initTypst() {
-      showStatus('compiling', 'Initializing...');
-
-      try {
-        $typst.setCompilerInitOptions({
-          getModule: () =>
-            'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
-        });
-        $typst.setRendererInitOptions({
-          getModule: () =>
-            'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
-        });
-
-        const res = await fetch('main.typ?t=' + Date.now());
-        mainTypContent = await res.text();
-
-        const fontFiles = [
-          'fonts/Times New Roman.ttf',
-          'fonts/Times New Roman Bold.ttf',
-          'fonts/Times New Roman Italic.ttf',
-          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Regular.ttf',
-          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Bold.ttf',
-          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Medium.ttf'
-        ];
-
-        const buffers = [];
-        for (const file of fontFiles) {
-          try {
-            const fontRes = await fetch(file);
-            if (fontRes.ok) {
-              const arrayBuffer = await fontRes.arrayBuffer();
-              buffers.push(new Uint8Array(arrayBuffer));
-            }
-          } catch (fontErr) {
-            console.warn("Error fetching font file:", file, fontErr);
-          }
-        }
-
-        if (buffers.length > 0) {
-          $typst.use(window.TypstSnippet.preloadFonts(buffers));
-        }
-
-        typstReady = true;
-        await compilePreview();
-      } catch (err) {
-        console.error("Failed to initialize WASM application:", err);
-        showStatus('error', 'Initialization failed: ' + err.message);
-      }
-    }
-
+    // Sync temporary address inputs with permanent inputs if sync_address checkbox is checked
     function setupAddressSync() {
       const syncCheckbox = document.getElementById('sync_address');
       const permJilla = document.getElementById('sthayi_jilla');
@@ -1054,12 +741,12 @@
       if (syncCheckbox) {
         syncCheckbox.addEventListener('change', () => {
           sync();
-          compilePreview();
+          FormEngine.compilePreview();
         });
       }
 
       const permInputs = [permJilla, permVdc, permWada, permTol];
-      const debouncedPreview = debounce(compilePreview, 400);
+      const debouncedPreview = FormEngine.debounce(FormEngine.compilePreview, 400);
       permInputs.forEach(input => {
         if (input) {
           input.addEventListener('input', () => {
@@ -1071,10 +758,10 @@
         }
       });
 
-      // Run sync initially
       sync();
     }
 
+    // Sync declaration name & designation fields with top officer details
     function setupDeclarationSync() {
       const nameInput = document.getElementById('nama');
       const padInput = document.getElementById('pad');
@@ -1083,7 +770,7 @@
 
       if (!nameInput || !padInput || !declNameInput || !declPadInput) return;
 
-      const debouncedPreview = debounce(compilePreview, 400);
+      const debouncedPreview = FormEngine.debounce(FormEngine.compilePreview, 400);
 
       nameInput.addEventListener('input', () => {
         declNameInput.value = nameInput.value;
@@ -1095,7 +782,6 @@
         debouncedPreview();
       });
 
-      // Initially sync if declaration inputs are empty
       if (!declNameInput.value && nameInput.value) {
         declNameInput.value = nameInput.value;
       }
@@ -1104,90 +790,67 @@
       }
     }
 
-    function loadFormDataFromLocalStorage() {
-      try {
-        const storedStr = localStorage.getItem('propertydesc_form_data');
+    // Dynamic lists configurations
+    const tableConfigs = [
+      { id: "table_ghar", creator: createGharCells, key: "table_ghar" },
+      { id: "table_jagga", creator: createJaggaCells, key: "table_jagga" },
+      { id: "table_nagad", creator: createNagadCells, key: "table_nagad" },
+      { id: "table_bank", creator: createBankCells, key: "table_bank" },
+      { id: "table_securities", creator: createSecuritiesCells, key: "table_securities" },
+      { id: "table_loan", creator: createLoanCells, key: "table_loan" },
+      { id: "table_vehicles", creator: createVehiclesCells, key: "table_vehicles" },
+      { id: "table_agriculture", creator: createAgricultureCells, key: "table_agriculture" },
+      { id: "table_others", creator: createOthersCells, key: "table_others" }
+    ];
 
-        // Setup configurations for tables
-        const tableConfigs = [
-          { id: "table_ghar", creator: createGharCells, key: "table_ghar" },
-          { id: "table_jagga", creator: createJaggaCells, key: "table_jagga" },
-          { id: "table_nagad", creator: createNagadCells, key: "table_nagad" },
-          { id: "table_bank", creator: createBankCells, key: "table_bank" },
-          { id: "table_securities", creator: createSecuritiesCells, key: "table_securities" },
-          { id: "table_loan", creator: createLoanCells, key: "table_loan" },
-          { id: "table_vehicles", creator: createVehiclesCells, key: "table_vehicles" },
-          { id: "table_agriculture", creator: createAgricultureCells, key: "table_agriculture" },
-          { id: "table_others", creator: createOthersCells, key: "table_others" }
-        ];
+    // Initialize FormEngine
+    FormEngine.init({
+      formId: "propertydesc",
+      pdfFilename: "property_declaration_form.pdf",
+      
+      collectFormData: (data) => {
+        data["table_ghar"] = collectTableData("table_ghar", "ghar", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
+        data["table_jagga"] = collectTableData("table_jagga", "jagga", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
+        data["table_nagad"] = collectTableData("table_nagad", "nagad", ['details', 'quantity', 'date', 'price', 'source', 'remarks']);
+        data["table_bank"] = collectTableData("table_bank", "bank", ['account_holder', 'bank_name_address', 'account_no', 'balance', 'source', 'remarks']);
+        data["table_securities"] = collectTableData("table_securities", "securities", ['shareholder_name', 'company_name_address', 'type', 'quantity', 'amount', 'source', 'remarks']);
+        data["table_loan"] = collectTableData("table_loan", "loan", ['borrower_lender_name_address', 'loan_type', 'amount', 'date', 'remarks']);
+        data["table_vehicles"] = collectTableData("table_vehicles", "vehicles", ['owner_name', 'type_no', 'price', 'date', 'source', 'remarks']);
+        data["table_agriculture"] = collectTableData("table_agriculture", "agriculture", ['details', 'quantity', 'price', 'date', 'source', 'remarks']);
+        data["table_others"] = collectTableData("table_others", "others", ['details', 'price', 'date', 'source', 'remarks']);
+        return data;
+      },
 
-        if (storedStr) {
-          const data = JSON.parse(storedStr);
-          if (data) {
-            const simpleFields = [
-              "nama", "pad", "nikaya", "karyalaya", "fiscal_year",
-              "sthayi_jilla", "sthayi_vdc_mp", "sthayi_wada", "sthayi_tol",
-              "temporary_jilla", "temporary_vdc_mp", "temporary_wada", "temporary_tol",
-              "sanket_no", "pan", "decl_name", "decl_pad", "decl_miti"
-            ];
-            simpleFields.forEach(f => {
-              const el = document.getElementById(f);
-              if (el && data[f] !== undefined) {
-                el.value = data[f];
-              }
-            });
-
-            const checkboxFields = [
-              "sync_address",
-              "break_ghar", "break_jagga", "break_nagad", "break_bank",
-              "break_securities", "break_loan", "break_vehicles", "break_agriculture", "break_others"
-            ];
-            checkboxFields.forEach(f => {
-              const el = document.getElementById(f);
-              if (el && data[f] !== undefined) {
-                el.checked = !!data[f];
-              }
-            });
-
-            tableConfigs.forEach(cfg => {
-              const tbody = document.querySelector(`#${cfg.id} .card-list-body`);
-              if (tbody) tbody.innerHTML = "";
-              if (data[cfg.key] && data[cfg.key].length > 0) {
-                data[cfg.key].forEach(row => {
-                  addRow(cfg.id, cfg.creator, row);
-                });
-              } else {
-                addRow(cfg.id, cfg.creator);
-              }
-            });
-            return;
-          }
-        }
-
-        // Default empty layout if no storage exists
+      restoreFormData: (data) => {
         tableConfigs.forEach(cfg => {
-          addRow(cfg.id, cfg.creator);
+          const tbody = document.querySelector(`#${cfg.id} .card-list-body`);
+          if (tbody) tbody.innerHTML = "";
+          if (data && data[cfg.key] && data[cfg.key].length > 0) {
+            data[cfg.key].forEach(row => {
+              addRow(cfg.id, cfg.creator, row);
+            });
+          } else {
+            addRow(cfg.id, cfg.creator);
+          }
         });
 
-      } catch (e) {
-        console.error("Error loading cached form data:", e);
+        setupAddressSync();
+        setupDeclarationSync();
+      },
+
+      prepareTypstContent: (data, mainTypContent) => {
+        const jsonStr = JSON.stringify(data);
+        const escapedJson = jsonStr.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+        return mainTypContent.replace(
+          '#let data = json("data.json")',
+          `#let data = json.decode("${escapedJson}")`
+        );
+      },
+
+      onRowRemoved: (parent) => {
+        updateRowNumbers();
       }
-    }
-
-    function startApp() {
-      loadFormDataFromLocalStorage();
-      initActions();
-      initTypst();
-      initFormListeners();
-      setupAddressSync();
-      setupDeclarationSync();
-    }
-
-    if (window.$typst) {
-      startApp();
-    } else {
-      document.getElementById('typst').addEventListener('load', startApp);
-    }
+    });
   </script>
 
 </body>

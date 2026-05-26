@@ -1,0 +1,194 @@
+/* Experiments Index Styles */
+:root {
+  --font-english: 'Outfit', sans-serif;
+  --font-nepali: 'Noto Sans Devanagari', sans-serif;
+  --bg-color: #0f0f0f;
+  --text-color: #f0f0f0;
+  --text-muted: #a0aec0;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-border-hover: rgba(255, 255, 255, 0.25);
+  --button-bg: #f0f0f0;
+  --button-text: #0f0f0f;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: #f0f0f0;
+    --text-color: #0f0f0f;
+    --text-muted: #718096;
+    --card-bg: rgba(0, 0, 0, 0.02);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --card-border-hover: rgba(0, 0, 0, 0.25);
+    --button-bg: #0f0f0f;
+    --button-text: #f0f0f0;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-english);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 3rem 1.5rem;
+  box-sizing: border-box;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Home Navigation Link at Top */
+.home-link-container {
+  margin-bottom: 2rem;
+  align-self: flex-start;
+}
+
+.home-link {
+  font-family: 'FantasqueSansMonoRegular', monospace;
+  font-size: 1rem;
+  text-decoration: underline;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.home-link:hover {
+  color: var(--text-color);
+}
+
+/* Title Header */
+header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.05em;
+}
+
+header p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Card layout grid */
+.experiments-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--card-border-hover);
+}
+
+.card-content {
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  font-family: var(--font-nepali);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Buttons */
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-bg);
+  border-radius: 4px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  box-sizing: border-box;
+}
+
+.card-btn:hover {
+  opacity: 0.9;
+}
+
+.card-btn span {
+  font-family: var(--font-nepali);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.card-btn svg {
+  flex-shrink: 0;
+}
+
+/* Bottom footer link */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  width: 100%;
+  border-top: 1px solid var(--card-border);
+}
+
+footer a {
+  font-family: var(--font-english);
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--text-color);
+}
+
+/* Responsive grid design */
+@media (max-width: 768px) {
+  .experiments-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  header h1 {
+    font-size: 2.25rem;
+  }
+
+  .card {
+    padding: 1.75rem;
+  }
+}

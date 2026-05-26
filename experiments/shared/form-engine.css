@@ -7,22 +7,17 @@
   font-style: normal;
 }
 
-/* Customized Style matching user's theme exactly, with premium two-column sticky preview layout */
+/* Base Light Mode variables */
 :root {
   --font-family: 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
   --mono-font: 'FantasqueSansMonoRegular', sans-serif;
   --bg-color: #f0f0f0;
-  /* Matches main index light bg */
   --text-color: #0f0f0f;
-  /* Matches main index light text */
   --heading-color: #0f0f0f;
   --hr-color: #cccccc;
   --card-bg: #f0f0f0;
-  /* Matches page background */
   --card-border: #0f0f0f;
-  /* Premium high-contrast flat border */
   --card-shadow: none;
-  /* Flat minimalist design */
   --legend-bg: #0f0f0f;
   --legend-text: #f0f0f0;
   --label-color: #333333;
@@ -34,7 +29,6 @@
   --input-focus-shadow: rgba(0, 0, 0, 0.1);
   --table-border: #0f0f0f;
   --th-bg: #e0e0e0;
-  /* Subtle contrast for table header */
   --btn-primary-bg: #0f0f0f;
   --btn-primary-hover: #333333;
   --btn-primary-disabled: #888888;
@@ -50,38 +44,31 @@
   --link-color: #0f0f0f;
 }
 
+/* Base Dark Mode variables */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #0f0f0f;
-    /* Matches main index dark bg */
     --text-color: #f0f0f0;
-    /* Matches main index dark text */
     --heading-color: #f0f0f0;
     --hr-color: #333333;
     --card-bg: #0f0f0f;
-    /* Matches page background */
     --card-border: #f0f0f0;
-    /* Premium high-contrast flat border */
     --card-shadow: none;
     --legend-bg: #f0f0f0;
     --legend-text: #0f0f0f;
     --label-color: #cccccc;
     --input-bg: #1c1c1e;
-    /* Premium dark grey input bg for legibility */
     --input-border: #f0f0f0;
     --input-text: #f0f0f0;
     --input-focus-bg: #2c2c2e;
-    /* Highlight input focus bg */
     --input-focus-border: #ffffff;
     --input-focus-shadow: rgba(255, 255, 255, 0.15);
     --table-border: #f0f0f0;
     --th-bg: #1c1c1c;
-    /* Subtle contrast for table header */
     --btn-primary-bg: #f0f0f0;
     --btn-primary-hover: #cccccc;
     --btn-primary-disabled: #444444;
     --input-disabled-bg: #0b0b0c;
-    /* Much darker for disabled state */
     --input-disabled-text: #555555;
     --input-disabled-border: #333333;
     --status-ready-bg: #064e3b;
@@ -112,9 +99,12 @@ body {
   line-height: 1.6;
 }
 
-/* Home Link */
 .home-link-container {
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .home-link {
@@ -151,17 +141,7 @@ hr {
   margin-top: 2rem;
 }
 
-
-
-/* Left Form Column */
-.form-column {
-  flex: 1 1 45%;
-  max-width: 900px;
-}
-
-/* Right Sticky Preview Column */
 .preview-column {
-  flex: 1 1 50%;
   position: sticky;
   top: 2rem;
   height: max-content;
@@ -170,39 +150,12 @@ hr {
   gap: 0;
 }
 
-.preview-pane {
-  flex: 1;
-  background: var(--bg-color);
-  border: 1px solid var(--card-border);
-  border-radius: 4px;
-  overflow: visible;
-  display: block;
-  padding: 0;
-}
 
-#previewContainer {
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-  width: 100%;
-  max-width: 100%;
-  min-height: 0;
-  display: block;
-  overflow: visible;
-  padding: 0;
-}
-
-#previewContainer svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
+/* Form inputs & base styles */
 fieldset {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 4px;
-  /* Flatter premium look */
   padding: 1.5rem 2rem;
   margin-bottom: 2rem;
   box-shadow: var(--card-shadow);
@@ -273,7 +226,22 @@ th {
   color: var(--label-color);
 }
 
-/* Document Actions Dock */
+table input[type="text"] {
+  margin-top: 0;
+  font-family: var(--mono-font);
+  font-size: 0.85rem;
+}
+
+input:disabled,
+textarea:disabled {
+  background-color: var(--input-disabled-bg);
+  color: var(--input-disabled-text);
+  border-color: var(--input-disabled-border);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Document Actions Dock UI */
 #docActions {
   position: fixed;
   bottom: 1.5rem;
@@ -333,7 +301,7 @@ th {
   flex-shrink: 0;
 }
 
-/* Interactive Status Card inside Preview Container */
+/* Status Cards inside Preview Box */
 .preview-status-card {
   display: flex;
   flex-direction: column;
@@ -364,20 +332,25 @@ th {
   line-height: 1.5;
 }
 
-/* Error Card Specifics */
 .preview-status-card.error {
   color: var(--status-error-text);
   background-color: var(--status-error-bg);
   border-radius: 4px;
 }
 
-/* Loading Card Specifics */
 .preview-status-card.loading {
   color: var(--status-compiling-text);
   background-color: var(--status-compiling-bg);
   border-radius: 4px;
 }
 
+.preview-status-card.disabled {
+  background: var(--bg-color);
+  border: 1px dashed var(--card-border);
+  opacity: 0.5;
+}
+
+/* Buttons */
 .btn-primary {
   background-color: var(--btn-primary-bg);
   color: var(--legend-text);
@@ -426,21 +399,219 @@ th {
   border-color: var(--status-error-text);
 }
 
-table input[type="text"] {
-  margin-top: 0;
-  font-family: var(--mono-font);
+/* Page Break Toggle Container */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 2px;
+  padding: 0.4rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.toggle-container input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--btn-primary-bg);
+}
+
+.toggle-container label {
   font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--label-color);
+  cursor: pointer;
+  user-select: none;
 }
 
-input:disabled,
-textarea:disabled {
-  background-color: var(--input-disabled-bg);
-  color: var(--input-disabled-text);
-  border-color: var(--input-disabled-border);
-  cursor: not-allowed;
+/* Responsive Table scroll layout */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  margin-top: 1rem;
+}
+
+.table-responsive table {
+  margin-top: 0;
+  min-width: 1050px;
+  border: none;
+}
+
+.table-responsive th,
+.table-responsive td {
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--card-border);
+  border-right: 1px solid var(--card-border);
+}
+
+.table-responsive th:last-child,
+.table-responsive td:last-child {
+  border-right: none;
+}
+
+.table-responsive tr:last-child td {
+  border-bottom: none;
+}
+
+.table-responsive input[type="text"] {
+  height: 30px;
+  padding: 0.25rem 0.4rem;
+  font-size: 0.85rem;
+  margin-top: 0;
+  border: 1px solid var(--hr-color);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.table-responsive input[type="text"]:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 2px var(--input-focus-shadow);
+}
+
+/* Card list / Dynamic row styles (reusable structure) */
+.card-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card-list-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card-row {
+  background-color: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 1.25rem;
+  position: relative;
   box-shadow: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.card-row:hover {
+  border-color: var(--btn-primary-bg);
+}
+
+.card-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed var(--hr-color);
+  padding-bottom: 0.5rem;
+}
+
+.card-row-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--label-color);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.card-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--label-color);
+  margin-bottom: 0;
+}
+
+.card-field input, 
+.card-field select {
+  margin-top: 0 !important;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.card-field.font-wide {
+  grid-column: 1 / -1;
+}
+
+/* Address section headers and sync layout */
+.address-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed var(--hr-color);
+  padding-bottom: 0.5rem;
+}
+
+.address-section-header h3 {
+  margin: 0;
+  text-align: left;
+}
+
+.sync-checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sync-checkbox-container input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--btn-primary-bg);
+}
+
+.sync-checkbox-container label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--label-color);
+  cursor: pointer;
+  user-select: none;
+}
+
+.address-fields-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.address-fields-vertical p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.address-fields-vertical label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.address-fields-vertical input {
+  margin-top: 0 !important;
+}
+
+/* Desktop viewport layouts (1024px) */
 @media (max-width: 1024px) {
   body {
     padding: 1rem;
@@ -464,7 +635,7 @@ textarea:disabled {
   .form-column,
   .preview-column {
     flex: 1 1 100%;
-    max-width: 100%;
+    max-width: 100% !important;
   }
 
   .preview-column {
@@ -478,81 +649,8 @@ textarea:disabled {
   }
 }
 
-/* Premium Responsive Responsibilities Table for Mobile Comfort */
+/* Mobile responsive dock */
 @media (max-width: 768px) {
-  fieldset table {
-    border: none;
-  }
-
-  fieldset table thead {
-    display: none;
-    /* Hide header on mobile since we layout cards */
-  }
-
-  fieldset table,
-  fieldset table tbody,
-  fieldset table tr,
-  fieldset table td {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  fieldset table tr {
-    border: 1px solid var(--card-border);
-    margin-bottom: 1.25rem;
-    padding: 0.75rem 1rem;
-    border-radius: 4px;
-    background-color: var(--card-bg);
-  }
-
-  fieldset table td {
-    border: none;
-    padding: 0.5rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  fieldset table td label {
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-
-  /* Add friendly responsive labels before the date inputs */
-  fieldset table td:nth-child(2)::before {
-    content: "देखि (BS) :";
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--label-color);
-    margin-bottom: 0.2rem;
-  }
-
-  fieldset table td:nth-child(3)::before {
-    content: "सम्म (BS) :";
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--label-color);
-    margin-bottom: 0.2rem;
-  }
-
-  fieldset table td input[type="text"] {
-    width: 100%;
-    margin-top: 0;
-    height: 36px;
-  }
-
-  /* Unified look for dynamic other row buttons on mobile */
-  #addOtherRow td {
-    display: block;
-    padding: 0.5rem 0;
-  }
-
-  #addOtherRow td button {
-    width: 100% !important;
-    height: 36px !important;
-  }
-
   #docActions {
     bottom: 1rem;
     padding: 0.4rem 0.6rem;
@@ -565,5 +663,32 @@ textarea:disabled {
     padding: 0.4rem 0.6rem;
     font-size: 0.8rem;
     gap: 0.3rem;
+  }
+}
+
+/* Custom layout alignments & clean wrappers on mobile (600px) */
+@media (max-width: 600px) {
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns: repeat"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  body {
+    padding: 0.75rem;
+    padding-bottom: 6rem;
+  }
+
+  fieldset {
+    padding: 1rem 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .toggle-container {
+    display: flex;
+    padding: 0.5rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
   }
 }

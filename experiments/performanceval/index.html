@@ -5,13 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>शिक्षकको कार्य सम्पादन मूल्याङ्कन फाराम</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100..900&display=swap"
-    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%2220%22 y=%2210%22 width=%2260%22 height=%2280%22 rx=%225%22 fill=%22%230f0f0f%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2230%22 x2=%2265%22 y2=%2230%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2250%22 x2=%2265%22 y2=%2250%22 stroke=%22white%22 stroke-width=%225%22/><line x1=%2235%22 y1=%2270%22 x2=%2255%22 y2=%2270%22 stroke=%22white%22 stroke-width=%225%22/></svg>">
   <!-- Load the official lite browser bundle from @myriaddreamin/typst.ts -->
   <script type="module"
     src="https://cdn.jsdelivr.net/npm/@myriaddreamin/typst.ts/dist/esm/contrib/all-in-one-lite.bundle.js"
@@ -21,7 +17,8 @@
 <body>
 
   <div class="home-link-container">
-    <a href="/" class="home-link">spandanguragain.com.np</a>
+    <a href="../" class="home-link">more forms</a>
+    <a href="../../" class="home-link">spandanguragain.com.np</a>
   </div>
 
   <h2>अनुसूची १</h2>
@@ -29,27 +26,6 @@
   <h2>शिक्षकको कार्य सम्पादन मूल्याङ्कन फाराम</h2>
 
   <hr>
-
-  <div id="docActions">
-    <button type="button" id="previewToggleBtn" class="doc-action-btn active" onclick="togglePreview()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-      Preview
-    </button>
-
-    <button type="button" id="downloadBtn" class="doc-action-btn" onclick="compilePDF()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-      </svg>
-      Download
-    </button>
-  </div>
 
   <main class="main-container">
 
@@ -330,7 +306,7 @@
                 <td><input type="text" id="resp_ta_samma" name="resp_ta_samma" size="15" placeholder="००००-११-२२"></td>
               </tr>
               <tr>
-                <td><label><input type="checkbox" id="resp_tha_check" name="resp_tha_check" onchange="toggleResp('tha')"
+            <label><input type="checkbox" id="resp_tha_check" name="resp_tha_check" onchange="toggleResp('tha')"
                       checked>
                     (ठ) अन्य</label></td>
                 <td><input type="text" id="resp_tha_dekhi" name="resp_tha_dekhi" size="15" placeholder="००००-११-२२">
@@ -442,204 +418,27 @@
 
   </main>
 
+  <script src="../shared/form-engine.js"></script>
   <script>
-    let mainTypContent = "";
-    let previewEnabled = true;
-    let typstReady = false;
-
-    // --- Status: displayed directly inside the WASM Preview Box ---
-    function showStatus(state, message) {
-      const container = document.getElementById('previewContainer');
-      if (!container) return;
-
-      // Handle disabled state
-      if (!previewEnabled) {
-        container.innerHTML = `
-          <div class="preview-status-card disabled">
-            <div class="preview-status-title">document preview is disabled</div>
-          </div>
-        `;
-        return;
-      }
-
-      if (state === 'compiling') {
-        container.innerHTML = `
-          <div class="preview-status-card loading">
-            <div class="preview-status-title">${message ? message.toLowerCase() : 'compiling...'}</div>
-          </div>
-        `;
-      } else if (state === 'error') {
-        container.innerHTML = `
-          <div class="preview-status-card error">
-            <div class="preview-status-title">compiling error</div>
-            <div class="preview-status-desc" style="white-space: pre-wrap; text-align: left; font-family: var(--mono-font); font-size: 0.8rem; margin-top: 1rem; width: 100%; border: 1px solid var(--status-error-text); padding: 0.75rem; border-radius: 2px; overflow-x: auto; max-height: 250px;">${message}</div>
-          </div>
-        `;
-      }
-    }
-
-    // --- Preview toggle ---
-    function togglePreview() {
-      previewEnabled = !previewEnabled;
-      try { localStorage.setItem('performanceval_preview', previewEnabled ? '1' : '0'); } catch (e) { }
-      applyPreviewState();
-    }
-    function applyPreviewState() {
-      const btn = document.getElementById('previewToggleBtn');
-      if (previewEnabled) {
-        if (btn) { btn.classList.add('active'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Preview'; }
-        if (typstReady) {
-          compilePreview();
-        }
-      } else {
-        if (btn) { btn.classList.remove('active'); btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg> Preview'; }
-        showStatus('success');
-      }
-    }
-
-
-
-    // --- Init actions ---
-    function initActions() {
-      // Restore preview state or detect mobile default
-      try {
-        const v = localStorage.getItem('performanceval_preview');
-        if (v !== null) {
-          previewEnabled = (v === '1');
-        } else {
-          // Detect smartphone (width <= 768px or standard mobile user agent match)
-          const isMobile = window.matchMedia("(max-width: 768px)").matches ||
-            /Android|iPhone|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-          previewEnabled = !isMobile;
-        }
-      } catch (e) {
-        previewEnabled = true; // Fallback
-      }
-      applyPreviewState();
-    }
-
-    // Form Fields Array
-    var fields = [
-      "vidyalaya", "darta_no", "darta_miti",
-      "shikshak_naam", "sanket_no", "tah",
-      "hal_vidyalaya", "mulyankan_dekhi", "mulyankan_samma",
-      "adhyapan_tah", "adhyapan_kaksha", "adhyapan_bishay", "exam_7_text",
-      "aushat_anka", "class_pass_percent", "geo_pass_percent", "shikshak_prapta_anka_ka", "ka_dastakhat_miti",
-      "anusandhan_bishay", "anusandhan_nishkarsha", "pratibedan_pristha",
-      "shikshak_prapta_anka_kha",
-      "resp_ka_check", "resp_kha_check", "resp_ga_check", "resp_gha_check",
-      "resp_nga_check", "resp_cha_check", "resp_chha_check", "resp_ja_check",
-      "resp_jha_check", "resp_nya_check", "resp_ta_check", "resp_tha_check",
-      "resp_ka_dekhi", "resp_ka_samma",
-      "resp_kha_dekhi", "resp_kha_samma",
-      "resp_ga_dekhi", "resp_ga_samma",
-      "resp_gha_dekhi", "resp_gha_samma",
-      "resp_nga_dekhi", "resp_nga_samma",
-      "resp_cha_dekhi", "resp_cha_samma",
-      "resp_chha_dekhi", "resp_chha_samma",
-      "resp_ja_dekhi", "resp_ja_samma",
-      "resp_jha_dekhi", "resp_jha_samma",
-      "resp_nya_dekhi", "resp_nya_samma",
-      "resp_ta_dekhi", "resp_ta_samma",
-      "resp_tha_dekhi", "resp_tha_samma",
-      "shikshak_prapta_anka_ga",
-      "sifaris_naam", "sifaris_pad", "sifaris_sanket", "sifaris_miti",
-      "pramanit_naam", "pramanit_pad", "pramanit_sanket", "pramanit_miti",
-      "supervisor_naam", "supervisor_pad", "supervisor_sanket", "supervisor_miti"
-    ];
-
-    function collectFormData() {
-      var data = {};
-      var levelRadios = document.getElementsByName("teacher_level");
-      for (var i = 0; i < levelRadios.length; i++) {
-        if (levelRadios[i].checked) {
-          data["teacher_level"] = levelRadios[i].value;
-          break;
-        }
-      }
-
-      var roleRadios = document.getElementsByName("shikshak_role");
-      for (var i = 0; i < roleRadios.length; i++) {
-        if (roleRadios[i].checked) {
-          data["shikshak_role"] = roleRadios[i].value;
-          break;
-        }
-      }
-
-      var shreniRadios = document.getElementsByName("shreni");
-      for (var i = 0; i < shreniRadios.length; i++) {
-        if (shreniRadios[i].checked) {
-          data["shreni"] = shreniRadios[i].value;
-          break;
-        }
-      }
-
-      var examRadios = document.getElementsByName("exam_type");
-      for (var i = 0; i < examRadios.length; i++) {
-        if (examRadios[i].checked) {
-          data["exam_type"] = examRadios[i].value;
-          break;
-        }
-      }
-
-      for (var i = 0; i < fields.length; i++) {
-        var el = document.getElementById(fields[i]);
-        if (el) {
-          if (el.type === 'checkbox') {
-            data[fields[i]] = el.checked;
-          } else {
-            data[fields[i]] = el.value.trim();
-          }
-        } else {
-          data[fields[i]] = "";
-        }
-      }
-
-      // Collect dynamically added "other" responsibilities
-      var otherResps = [];
-      var rows = document.querySelectorAll('.dynamic-resp-row');
-      rows.forEach(function (row) {
-        var title = row.querySelector('.dynamic-title');
-        var dekhi = row.querySelector('.dynamic-dekhi');
-        var samma = row.querySelector('.dynamic-samma');
-        if (title && title.value.trim()) {
-          otherResps.push({
-            check: true,
-            title: title.value.trim(),
-            dekhi: dekhi ? dekhi.value.trim() : "",
-            samma: samma ? samma.value.trim() : ""
-          });
-        }
-      });
-      data["other_resps"] = otherResps;
-
-      return data;
-    }
-
+    // Toggle checkboxes to enable/disable date fields
     function toggleResp(key) {
-      var checked = document.getElementById('resp_' + key + '_check').checked;
-      document.getElementById('resp_' + key + '_dekhi').disabled = !checked;
-      document.getElementById('resp_' + key + '_samma').disabled = !checked;
-      if (!checked) {
-        document.getElementById('resp_' + key + '_dekhi').value = "";
-        document.getElementById('resp_' + key + '_samma').value = "";
-      }
-    }
-
-    function removeDynamicRow(btn) {
-      btn.closest('tr').remove();
-      const rows = document.querySelectorAll('.dynamic-resp-row');
-      if (rows.length === 0) {
-        const thaCheck = document.getElementById('resp_tha_check');
-        if (thaCheck) {
-          thaCheck.disabled = false;
+      const chk = document.getElementById('resp_' + key + '_check');
+      const dekhi = document.getElementById('resp_' + key + '_dekhi');
+      const samma = document.getElementById('resp_' + key + '_samma');
+      if (chk && dekhi && samma) {
+        const checked = chk.checked;
+        dekhi.disabled = !checked;
+        samma.disabled = !checked;
+        if (!checked) {
+          dekhi.value = "";
+          samma.value = "";
         }
       }
-      compilePreview();
     }
 
+    // Add a new dynamic responsibility row
     function addOtherResp() {
-      // Automatically disable/uncheck the static (ठ) अन्य option
+      // Disable the static (ठ) other checkbox
       const thaCheck = document.getElementById('resp_tha_check');
       if (thaCheck) {
         thaCheck.checked = false;
@@ -653,140 +452,18 @@
       newRow.innerHTML = `
         <td>
           <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%;">
-            <button type="button" class="btn-delete" onclick="removeDynamicRow(this)" style="margin: 0; flex-shrink: 0;">×</button>
-            <input type="text" class="dynamic-title" placeholder="जिम्मेवारी" oninput="compilePreview()" style="flex: 1; min-width: 120px; box-sizing: border-box;">
+            <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)" style="margin: 0; flex-shrink: 0;">×</button>
+            <input type="text" class="dynamic-title" placeholder="जिम्मेवारी" oninput="FormEngine.compilePreview()" style="flex: 1; min-width: 120px; box-sizing: border-box;">
           </div>
         </td>
-        <td><input type="text" class="dynamic-dekhi" placeholder="००००-११-२२" oninput="compilePreview()" size="15" style="width: 100%; box-sizing: border-box;"></td>
-        <td><input type="text" class="dynamic-samma" placeholder="००००-११-२२" oninput="compilePreview()" size="15" style="width: 100%; box-sizing: border-box;"></td>
+        <td><input type="text" class="dynamic-dekhi" placeholder="००००-११-२२" oninput="FormEngine.compilePreview()" size="15" style="width: 100%; box-sizing: border-box;"></td>
+        <td><input type="text" class="dynamic-samma" placeholder="००००-११-२२" oninput="FormEngine.compilePreview()" size="15" style="width: 100%; box-sizing: border-box;"></td>
       `;
       addRow.parentNode.insertBefore(newRow, addRow);
-      compilePreview(); // Refresh preview automatically
+      FormEngine.compilePreview();
     }
 
-    function prepareTypstContent(data) {
-      const jsonStr = JSON.stringify(data);
-      const escapedJson = jsonStr
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"');
-
-      var content = mainTypContent.replace(
-        '#let data = json("data.json")',
-        `#let data = json.decode("${escapedJson}")`
-      );
-
-      if (data["other_resps"] && data["other_resps"].length > 0) {
-        content = content.replace(
-          '  (check: data.at("resp_tha_check", default: false), title: "अन्य :", dekhi: data.at("resp_tha_dekhi", default: ""), samma: data.at("resp_tha_samma", default: "")),',
-          '  ..data.at("other_resps", default: ()).map(x => (check: x.at("check", default: false), title: x.at("title", default: "") + " :", dekhi: x.at("dekhi", default: ""), samma: x.at("samma", default: ""))),'
-        );
-      }
-      return content;
-    }
-
-    // Debouncer for live compiling to avoid performance lag
-    function debounce(func, wait) {
-      let timeout;
-      return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-      };
-    }
-
-    // Live SVG preview renderer via WebAssembly
-    async function compilePreview() {
-      if (!previewEnabled || !typstReady) {
-        if (typstReady) showStatus('success'); // Clear active "Initializing..." status
-        return;
-      }
-      showStatus('compiling', 'Compiling preview...');
-
-      try {
-        const data = collectFormData();
-
-        // Save form state to LocalStorage
-        try {
-          localStorage.setItem('performanceval_form_data', JSON.stringify(data));
-        } catch (storageErr) {
-          console.warn("Could not save form state to local storage:", storageErr);
-        }
-
-        const compiledContent = prepareTypstContent(data);
-
-        // Compile directly using official mainContent parameter
-        const svg = await $typst.svg({ mainContent: compiledContent });
-
-        const previewContainer = document.getElementById('previewContainer');
-        previewContainer.innerHTML = svg;
-
-        const svgElem = previewContainer.firstElementChild;
-        if (svgElem) {
-          svgElem.removeAttribute('width');
-          svgElem.removeAttribute('height');
-          svgElem.style.width = '100%';
-          svgElem.style.height = 'auto';
-
-          // Inject high-fidelity paper backgrounds and solid page separation lines
-          const pages = svgElem.querySelectorAll('.typst-page');
-          pages.forEach((page) => {
-            const width = parseFloat(page.getAttribute('data-page-width')) || 596;
-            const height = parseFloat(page.getAttribute('data-page-height')) || 842;
-
-            // White physical sheet rectangle background
-            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-            rect.setAttribute('x', '0');
-            rect.setAttribute('y', '0');
-            rect.setAttribute('width', width);
-            rect.setAttribute('height', height);
-            rect.setAttribute('fill', '#ffffff');
-            rect.setAttribute('stroke', '#cbd5e0');
-            rect.setAttribute('stroke-width', '1.5');
-
-            // Inject as the first child so it sits beneath the text elements
-            page.insertBefore(rect, page.firstChild);
-          });
-        }
-
-        showStatus('success');
-      } catch (err) {
-        console.error("Preview compilation failed:", err);
-        showStatus('error', err.message);
-      }
-    }
-
-    // Full PDF Export via WebAssembly
-    async function compilePDF() {
-      if (!typstReady) return;
-      const btn = document.getElementById("downloadBtn");
-      btn.disabled = true;
-      showStatus('compiling', 'Generating PDF...');
-
-      try {
-        const data = collectFormData();
-        const compiledContent = prepareTypstContent(data);
-
-        // Generate PDF client-side using official mainContent parameter
-        const pdfData = await $typst.pdf({ mainContent: compiledContent });
-        const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
-
-        const url = URL.createObjectURL(pdfBlob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "evaluation_form.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        showStatus('success');
-      } catch (err) {
-        console.error("PDF generation failed:", err);
-        showStatus('error', err.message);
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
+    // Auto-update tah fields based on level choice
     function updateTahFields(levelValue) {
       const tahInput = document.getElementById("tah");
       const adhyapanTahInput = document.getElementById("adhyapan_tah");
@@ -804,6 +481,7 @@
       }
     }
 
+    // Toggle other text input for exam type selection
     function toggleExamOtherField() {
       const exam7Radio = document.getElementById("exam_7_radio");
       const exam7Text = document.getElementById("exam_7_text");
@@ -818,159 +496,39 @@
       }
     }
 
-    // Set up form dynamic listener for live updates
-    function initFormListeners() {
-      const form = document.getElementById('mainForm');
-      // Listen to input and change events with a 400ms debounce
-      const debouncedPreview = debounce(compilePreview, 400);
-
-      // Handle level selection auto-fill
-      form.addEventListener('change', function (e) {
-        if (e.target && e.target.name === 'teacher_level') {
-          updateTahFields(e.target.value);
-          compilePreview(); // Refresh preview automatically
-        }
-        if (e.target && e.target.name === 'exam_type') {
-          toggleExamOtherField();
-          compilePreview(); // Refresh preview automatically
-        }
-      });
-
-      form.addEventListener('input', debouncedPreview);
-      form.addEventListener('change', debouncedPreview);
-    }
-
-    // Initialize Typst WASM, Fetch main.typ, and preload Times New Roman default fonts
-    async function initTypst() {
-      showStatus('compiling', 'Initializing...');
-
-      try {
-        // Set up module URL paths for the official lite bundle
-        $typst.setCompilerInitOptions({
-          getModule: () =>
-            'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
+    // Initialize the shared FormEngine for performanceval
+    FormEngine.init({
+      formId: "performanceval",
+      pdfFilename: "evaluation_form.pdf",
+      
+      collectFormData: (data) => {
+        // Collect dynamically added responsibilities
+        const otherResps = [];
+        const rows = document.querySelectorAll('.dynamic-resp-row');
+        rows.forEach(row => {
+          const title = row.querySelector('.dynamic-title');
+          const dekhi = row.querySelector('.dynamic-dekhi');
+          const samma = row.querySelector('.dynamic-samma');
+          if (title && title.value.trim()) {
+            otherResps.push({
+              check: true,
+              title: title.value.trim(),
+              dekhi: dekhi ? dekhi.value.trim() : "",
+              samma: samma ? samma.value.trim() : ""
+            });
+          }
         });
-        $typst.setRendererInitOptions({
-          getModule: () =>
-            'https://cdn.jsdelivr.net/npm/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm',
-        });
+        data["other_resps"] = otherResps;
+        return data;
+      },
 
-        const res = await fetch('main.typ?t=' + Date.now());
-        mainTypContent = await res.text();
-
-        // Preload local default fonts folder (Times New Roman fonts) and Noto Sans Devanagari CDN font
-        const fontFiles = [
-          'fonts/Times New Roman.ttf',
-          'fonts/Times New Roman Bold.ttf',
-          'fonts/Times New Roman Italic.ttf',
-          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Regular.ttf',
-          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Bold.ttf',
-          'https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSerifDevanagari/hinted/ttf/NotoSerifDevanagari-Medium.ttf'
-        ];
-
-        const buffers = [];
-        for (const file of fontFiles) {
-          console.log("Preloading font:", file);
-          try {
-            const fontRes = await fetch(file);
-            if (fontRes.ok) {
-              const arrayBuffer = await fontRes.arrayBuffer();
-              buffers.push(new Uint8Array(arrayBuffer));
-              console.log("Successfully fetched font file:", file);
-            } else {
-              console.warn("Failed to fetch font file:", file);
-            }
-          } catch (fontErr) {
-            console.warn("Error fetching font file:", file, fontErr);
-          }
-        }
-
-        if (buffers.length > 0) {
-          console.log("Registering all fonts via single-call preloadFonts...");
-          $typst.use(window.TypstSnippet.preloadFonts(buffers));
-        }
-
-        typstReady = true;
-
-        // Perform initial compilation preview
-        await compilePreview();
-      } catch (err) {
-        console.error("Failed to initialize WASM application:", err);
-        showStatus('error', 'Initialization failed: ' + err.message);
-      }
-    }
-
-    // Load cached form data from localStorage
-    function loadFormDataFromLocalStorage() {
-      try {
-        const storedStr = localStorage.getItem('performanceval_form_data');
-        if (!storedStr) return;
-
-        const data = JSON.parse(storedStr);
-        if (!data) return;
-
-        // 1. Restore standard teacher_level radio buttons
-        if (data["teacher_level"]) {
-          const levelRadios = document.getElementsByName("teacher_level");
-          for (let radio of levelRadios) {
-            if (radio.value === data["teacher_level"]) {
-              radio.checked = true;
-              break;
-            }
-          }
-        }
-
-        // 2. Restore shikshak_role radio buttons
-        if (data["shikshak_role"]) {
-          const roleRadios = document.getElementsByName("shikshak_role");
-          for (let radio of roleRadios) {
-            if (radio.value === data["shikshak_role"]) {
-              radio.checked = true;
-              break;
-            }
-          }
-        }
-
-        // 3. Restore shreni radio buttons
-        if (data["shreni"]) {
-          const shreniRadios = document.getElementsByName("shreni");
-          for (let radio of shreniRadios) {
-            if (radio.value === data["shreni"]) {
-              radio.checked = true;
-              break;
-            }
-          }
-        }
-
-        // 4. Restore exam_type radio buttons
-        if (data["exam_type"]) {
-          const examRadios = document.getElementsByName("exam_type");
-          for (let radio of examRadios) {
-            if (radio.value === data["exam_type"]) {
-              radio.checked = true;
-              break;
-            }
-          }
-        }
-
-        // 5. Restore standard fields (text fields, checkboxes, etc.)
-        for (let i = 0; i < fields.length; i++) {
-          const field = fields[i];
-          const el = document.getElementById(field);
-          if (el && data[field] !== undefined) {
-            if (el.type === 'checkbox') {
-              el.checked = data[field];
-            } else {
-              el.value = data[field];
-            }
-          }
-        }
-
-        // 6. Handle custom dynamic responsibility rows (other_resps)
+      restoreFormData: (data) => {
+        // Clear any old rows
         const dynamicRows = document.querySelectorAll('.dynamic-resp-row');
         dynamicRows.forEach(row => row.remove());
 
-        if (data["other_resps"] && data["other_resps"].length > 0) {
+        // Recreate saved rows
+        if (data && data["other_resps"] && data["other_resps"].length > 0) {
           const addRow = document.getElementById('addOtherRow');
           data["other_resps"].forEach(resp => {
             const newRow = document.createElement('tr');
@@ -978,71 +536,77 @@
             newRow.innerHTML = `
               <td>
                 <div style="display: flex; align-items: center; gap: 0.5rem; width: 100%;">
-                  <button type="button" class="btn-delete" onclick="removeDynamicRow(this)" style="margin: 0; flex-shrink: 0;">×</button>
-                  <input type="text" class="dynamic-title" placeholder="जिम्मेवारी" oninput="compilePreview()" value="${resp.title || ''}" style="flex: 1; min-width: 120px; box-sizing: border-box;">
+                  <button type="button" class="btn-delete" onclick="FormEngine.removeDynamicRow(this)" style="margin: 0; flex-shrink: 0;">×</button>
+                  <input type="text" class="dynamic-title" placeholder="जिम्मेवारी" oninput="FormEngine.compilePreview()" value="${resp.title || ''}" style="flex: 1; min-width: 120px; box-sizing: border-box;">
                 </div>
               </td>
-              <td><input type="text" class="dynamic-dekhi" placeholder="००००-११-२२" oninput="compilePreview()" value="${resp.dekhi || ''}" size="15" style="width: 100%; box-sizing: border-box;"></td>
-              <td><input type="text" class="dynamic-samma" placeholder="००००-११-२२" oninput="compilePreview()" value="${resp.samma || ''}" size="15" style="width: 100%; box-sizing: border-box;"></td>
+              <td><input type="text" class="dynamic-dekhi" placeholder="००००-११-२२" oninput="FormEngine.compilePreview()" value="${resp.dekhi || ''}" size="15" style="width: 100%; box-sizing: border-box;"></td>
+              <td><input type="text" class="dynamic-samma" placeholder="००००-११-२२" oninput="FormEngine.compilePreview()" value="${resp.samma || ''}" size="15" style="width: 100%; box-sizing: border-box;"></td>
             `;
             addRow.parentNode.insertBefore(newRow, addRow);
           });
         }
 
-        // 7. Update disabled/enabled input fields based on checkboxes state
+        // Apply toggle states to checkboxes
         const respKeys = ["ka", "kha", "ga", "gha", "nga", "cha", "chha", "ja", "jha", "nya", "ta", "tha"];
         respKeys.forEach(key => {
-          const chk = document.getElementById('resp_' + key + '_check');
-          if (chk) {
-            if (data['resp_' + key + '_check'] !== undefined) {
-              chk.checked = data['resp_' + key + '_check'];
-            }
-            toggleResp(key);
-          }
+          toggleResp(key);
         });
 
-        // Disable static (ठ) अन्य if dynamic rows exist
+        // Sync helper fields
+        toggleExamOtherField();
+
+        // If other_resps has rows, disable the static (ठ) other checkbox
         const thaCheck = document.getElementById('resp_tha_check');
         if (thaCheck) {
-          if (data["other_resps"] && data["other_resps"].length > 0) {
+          if (data && data["other_resps"] && data["other_resps"].length > 0) {
             thaCheck.disabled = true;
           }
         }
+      },
 
-        // 8. Run dynamic togglers
-        toggleExamOtherField();
+      prepareTypstContent: (data, mainTypContent) => {
+        const jsonStr = JSON.stringify(data);
+        const escapedJson = jsonStr.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+        let content = mainTypContent.replace(
+          '#let data = json("data.json")',
+          `#let data = json.decode("${escapedJson}")`
+        );
 
-      } catch (e) {
-        console.error("Error loading cached form data:", e);
-      }
-    }
-
-    // Safe initialization to avoid race conditions
-    function startApp() {
-      console.log("Typst browser bundle loaded successfully. Starting application...");
-
-      // Load form data from LocalStorage
-      loadFormDataFromLocalStorage();
-
-      // If no local storage exists, set default levels
-      if (!localStorage.getItem('performanceval_form_data')) {
-        const activeRadio = document.querySelector('input[name="teacher_level"]:checked');
-        if (activeRadio) {
-          updateTahFields(activeRadio.value);
+        if (data["other_resps"] && data["other_resps"].length > 0) {
+          content = content.replace(
+            '  (check: data.at("resp_tha_check", default: false), title: "अन्य :", dekhi: data.at("resp_tha_dekhi", default: ""), samma: data.at("resp_tha_samma", default: "")),',
+            '  ..data.at("other_resps", default: ()).map(x => (check: x.at("check", default: false), title: x.at("title", default: "") + " :", dekhi: x.at("dekhi", default: ""), samma: x.at("samma", default: ""))),'
+          );
         }
-        toggleExamOtherField();
+        return content;
+      },
+
+      onFormInitListeners: (debouncedPreview) => {
+        const form = document.getElementById('mainForm');
+        form.addEventListener('change', function (e) {
+          if (e.target && e.target.name === 'teacher_level') {
+            updateTahFields(e.target.value);
+            FormEngine.compilePreview();
+          }
+          if (e.target && e.target.name === 'exam_type') {
+            toggleExamOtherField();
+            FormEngine.compilePreview();
+          }
+        });
+      },
+
+      onRowRemoved: (parent) => {
+        // Re-enable the static (ठ) option if all dynamic rows are removed
+        const rows = document.querySelectorAll('.dynamic-resp-row');
+        if (rows.length === 0) {
+          const thaCheck = document.getElementById('resp_tha_check');
+          if (thaCheck) {
+            thaCheck.disabled = false;
+          }
+        }
       }
-
-      initActions();
-      initTypst();
-      initFormListeners();
-    }
-
-    if (window.$typst) {
-      startApp();
-    } else {
-      document.getElementById('typst').addEventListener('load', startApp);
-    }
+    });
   </script>
 
 </body>
