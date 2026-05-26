@@ -118,10 +118,10 @@
 #align(bottom)[
 #grid(
   columns: (1fr, 1fr, 1fr, 1fr),
-  column-gutter: 8pt,
+  column-gutter: 65pt,
   [मिति : #f(data.at("date", default: ""))],
-  [विद्यालयको छाप :],
-  [शिक्षकको दस्तखत :],
-  [प्रमुखको दस्तखत :],
+  overline(offset: -15pt)[विद्यालयको छाप],
+  overline(offset: -15pt)[शिक्षकको दस्तखत],
+  overline(offset: -15pt)[प्रमुखको दस्तखत],
 )
 ]
