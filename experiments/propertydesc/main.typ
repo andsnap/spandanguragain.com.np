@@ -34,6 +34,14 @@
   }
 }
 
+#let wrap-text(s) = {
+  if s != none and type(s) == str {
+    pad(right: 3pt)[#s.clusters().join(sym.zws)]
+  } else {
+    s
+  }
+}
+
 #let render-rows(data-list, empty-rows-count, row-mapper) = {
   let rows = ()
   let count = 0
@@ -247,7 +255,7 @@
       [#to-nepali-num(sn)],
       [#cv(item.at("account_holder", default: ""))],
       [#cv(item.at("bank_name_address", default: ""))],
-      [#cv(item.at("account_no", default: ""))],
+      [#cv(wrap-text(item.at("account_no", default: "")))],
       [#cv(item.at("balance", default: ""))],
       [#cv(item.at("source", default: ""))],
       [#cv(item.at("remarks", default: ""))],
@@ -258,7 +266,7 @@
 }
 
 #table(
-  columns: (25pt, 2.2fr, 2.8fr, 80pt, 70pt, 1.5fr, 1fr),
+  columns: (25pt, 2.2fr, 2.8fr, 2.8fr, 70pt, 1.5fr, 1fr),
   align: (col, row) => if col == 0 or row == 0 { center + horizon } else { left + horizon },
   stroke: 0.5pt,
   table.header(
