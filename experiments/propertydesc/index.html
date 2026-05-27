@@ -675,6 +675,23 @@
       tbody.appendChild(tr);
 
       const inputs = tr.querySelectorAll('input, select');
+      
+      // Explicitly set values to prevent HTML attribute interpolation issues
+      if (rowData) {
+        inputs.forEach(input => {
+          // Extract the field name from the class (e.g. 'ghar-owner_name' -> 'owner_name')
+          const classList = Array.from(input.classList);
+          for (const cls of classList) {
+            if (cls.includes('-')) {
+              const fieldName = cls.split('-')[1];
+              if (rowData[fieldName] !== undefined) {
+                input.value = rowData[fieldName];
+              }
+            }
+          }
+        });
+      }
+
       const debouncedPreview = FormEngine.debounce(FormEngine.compilePreview, 400);
       inputs.forEach(input => {
         input.addEventListener('input', debouncedPreview);
@@ -690,17 +707,13 @@
       const rows = document.querySelectorAll(`#${tableId} .card-list-body .dynamic-row`);
       rows.forEach(row => {
         const obj = {};
-        let hasData = false;
         fieldsList.forEach(f => {
           const el = row.querySelector(`.${prefix}-${f}`);
           if (el) {
-            obj[f] = el.value.trim();
-            if (obj[f]) hasData = true;
+            obj[f] = el.value; // Store exact value
           }
         });
-        if (hasData) {
-          result.push(obj);
-        }
+        result.push(obj);
       });
       return result;
     }

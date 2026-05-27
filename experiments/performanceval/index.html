@@ -509,12 +509,12 @@
           const title = row.querySelector('.dynamic-title');
           const dekhi = row.querySelector('.dynamic-dekhi');
           const samma = row.querySelector('.dynamic-samma');
-          if (title && title.value.trim()) {
+          if (title) {
             otherResps.push({
               check: true,
-              title: title.value.trim(),
-              dekhi: dekhi ? dekhi.value.trim() : "",
-              samma: samma ? samma.value.trim() : ""
+              title: title.value,
+              dekhi: dekhi ? dekhi.value : "",
+              samma: samma ? samma.value : ""
             });
           }
         });
