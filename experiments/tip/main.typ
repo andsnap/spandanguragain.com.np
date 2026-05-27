@@ -112,7 +112,7 @@
   align(left + top)[#set text(size: 9pt); #set par(leading: 7pt); #(data.at("row6_actions", default: ""))],
 )
 
-#v(16pt)
+#v(70pt)
 
 // ── Footer ─────────────────────────────────────────────────────────────────
   #grid(
