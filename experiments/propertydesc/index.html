@@ -488,7 +488,7 @@
           </div>
           <div class="card-field">
             <label>किस्म</label>
-            <input type="text" class="securities-type" placeholder="किस्म" value="${d.type || ''}">
+            <input type="text" class="securities-type" placeholder="किसिम" value="${d.type || ''}">
           </div>
           <div class="card-field">
             <label>संख्या</label>
@@ -675,7 +675,7 @@
       tbody.appendChild(tr);
 
       const inputs = tr.querySelectorAll('input, select');
-      
+
       // Explicitly set values to prevent HTML attribute interpolation issues
       if (rowData) {
         inputs.forEach(input => {
@@ -820,7 +820,7 @@
     FormEngine.init({
       formId: "propertydesc",
       pdfFilename: "property_declaration_form.pdf",
-      
+
       collectFormData: (data) => {
         data["table_ghar"] = collectTableData("table_ghar", "ghar", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);
         data["table_jagga"] = collectTableData("table_jagga", "jagga", ['owner_name', 'jilla', 'vdc_mp', 'wada', 'kitta', 'area', 'price', 'source', 'remarks']);

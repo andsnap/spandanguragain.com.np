@@ -300,6 +300,8 @@ window.FormEngine = (function () {
       URL.revokeObjectURL(url);
 
       showStatus('success');
+      // Re-compile preview to restore the SVG preview instead of being stuck on 'generating pdf...'
+      compilePreview();
     } catch (err) {
       console.error("PDF generation failed:", err);
       showStatus('error', err.message);
