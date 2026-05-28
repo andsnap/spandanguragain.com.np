@@ -67,7 +67,7 @@
 #show heading.where(level: 3): set text(size: 11pt)
 #set page(
   paper: "a4", 
-  flipped: false, 
+  flipped: true, 
   margin: (x: 0.75in, y: 0.75in),
   footer: context {
     let page-num = counter(page).get().first()
