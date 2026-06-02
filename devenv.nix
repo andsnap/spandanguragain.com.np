@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  languages.python.enable = true;
+}
